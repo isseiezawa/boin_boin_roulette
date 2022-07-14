@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import boins from './modules/boins'
+import selectedWords from './modules/selectedWords'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
-    boins
+    selectedWords
   }
 })
