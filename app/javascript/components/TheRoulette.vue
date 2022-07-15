@@ -4,20 +4,34 @@
       <div class="box">
         <word-box :selectedWords="selectedWords" />
       </div>
+      <div class="mx-auto text-center">
+        <transition name="fade">
+          <div>
+            <button @click="randomPickedUpWords(selectedWords)">
+            おす
+          </button>
+            <p>{{ resultWord }}</p>
+          </div>
+        </transition>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import WordBox from './WordBox.vue'
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   components: {
     WordBox
   },
   computed: {
-    ...mapGetters('selectedWords', ['selectedWords'])
+    ...mapGetters('selectedWords', ['selectedWords']),
+    ...mapGetters('resultWord', ['resultWord'])
+  },
+  methods: {
+    ...mapActions('resultWord', ['randomPickedUpWords'])
   }
 }
 </script>
