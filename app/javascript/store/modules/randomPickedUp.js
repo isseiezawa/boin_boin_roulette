@@ -1,14 +1,19 @@
 const state = {
-  pickedUpNumbers: ''
+  pickedUpNumbers: '',
+  pickedUpWords: ''
 }
 
 const getters = {
-  pickedUpNumbers: state => state.pickedUpNumbers
+  pickedUpNumbers: state => state.pickedUpNumbers,
+  pickedUpWords: state => state.pickedUpWords
 }
 
 const mutations = {
-  randomPickedUpNumbers(state, wordStorage) {
-    state.pickedUpNumbers = wordStorage
+  randomPickedUpNumbers(state, numberStorage) {
+    state.pickedUpNumbers = numberStorage
+  },
+  randomPickedUpWords(state, wordStorage) {
+    state.pickedUpWords = wordStorage
   }
 }
 
@@ -25,6 +30,15 @@ const actions = {
       eachNumber[randomNumber] = eachNumber[len-1];
     }
     commit('randomPickedUpNumbers', numberStorage)
+  },
+  randomPickedUpWords({ commit, state }, selectedWords){
+    var wordStorage = []
+    if(state.pickedUpNumbers.length) {
+      for(var i = 0; i < 2; i++) {
+        wordStorage.push(selectedWords[state.pickedUpNumbers[i]])
+      }
+      commit('randomPickedUpWords', wordStorage)
+    }
   }
 }
 
