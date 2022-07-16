@@ -7,10 +7,13 @@
       <div class="mx-auto text-center">
         <transition name="fade">
           <div>
-            <button @click="randomPickedUpNumbers(selectedWords)">
+            <button @click="startLoop(100)">
               おす
             </button>
-            <p>{{ pickedUpNumbers }}</p>
+            <button @click="slowLoop()">
+              おす
+            </button>
+            <p>{{ pickedUpWords }}</p>
           </div>
         </transition>
       </div>
@@ -26,12 +29,35 @@ export default {
   components: {
     WordBox
   },
+  data() {
+    return {
+      intervId: null
+    }
+  },
   computed: {
     ...mapGetters('selectedWords', ['selectedWords']),
-    ...mapGetters('randomPickedUp', ['pickedUpNumbers'])
+    ...mapGetters('randomPickedUp', ['pickedUpWords'])
   },
   methods: {
-    ...mapActions('randomPickedUp', ['randomPickedUpNumbers'])
+    ...mapActions('randomPickedUp', ['randomPickedUpNumbers']),
+    startLoop(time) {
+      if (!this.intervId) {
+        this.intervId = setInterval(this.randomPickedUpNumbers,
+                                    time,
+                                    this.selectedWords
+                                    )
+      }
+    },
+    slowLoop() {
+      clearInterval(this.intervId)
+      this.intervId = null
+      this.startLoop(500)
+      setTimeout(this.stopLoop, 3.0*1000)
+    },
+    stopLoop() {
+      clearInterval(this.intervId)
+      this.intervId = null
+    }
   }
 }
 </script>
