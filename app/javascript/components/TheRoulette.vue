@@ -6,13 +6,16 @@
       </div>
       <div class="mx-auto text-center">
         <transition name="fade">
-          <div>
-            <button @click="startOrStop ? startLoop(100) : slowLoop()" class="btn btn-pink-moon">
-              {{ startOrStopButton }}
-            </button>
+          <div v-if="pickedUpWords">
             <p>{{ pickedUpWords }}</p>
           </div>
         </transition>
+        <button
+          class="btn btn-pink-moon"
+          @click="startOrStop ? startLoop(100) : slowLoop()"
+        >
+          {{ startOrStopButton }}
+        </button>
       </div>
     </div>
   </div>
@@ -80,5 +83,12 @@ export default {
 }
 .btn-pink-moon:hover {
   color: #ff0000;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 2.0s;
+}
+
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>
