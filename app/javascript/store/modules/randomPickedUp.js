@@ -18,7 +18,7 @@ const mutations = {
 }
 
 const actions = {
-  randomPickedUpNumbers({ commit }, selectedWords) {
+  randomPickedUpNumbers({ commit, dispatch }, selectedWords) {
     var eachNumber = [];
     for(var i = 0; i < selectedWords.length; i++){
       eachNumber[i] = i;
@@ -30,6 +30,7 @@ const actions = {
       eachNumber[randomNumber] = eachNumber[len-1];
     }
     commit('randomPickedUpNumbers', numberStorage)
+    dispatch('randomPickedUpWords', selectedWords)
   },
   randomPickedUpWords({ commit, state }, selectedWords){
     var wordStorage = []
