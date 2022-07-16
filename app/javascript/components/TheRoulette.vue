@@ -7,10 +7,10 @@
       <div class="mx-auto text-center">
         <transition name="fade">
           <div>
-            <button @click="randomPickedUpWords(selectedWords)">
+            <button @click="randomPickedUpNumbers(selectedWords)">
             おす
           </button>
-            <p>{{ resultWord }}</p>
+            <p>{{ pickedUpNumbers }}</p>
           </div>
         </transition>
       </div>
@@ -28,10 +28,10 @@ export default {
   },
   computed: {
     ...mapGetters('selectedWords', ['selectedWords']),
-    ...mapGetters('resultWord', ['resultWord'])
+    ...mapGetters('randomPickedUp', ['pickedUpNumbers'])
   },
   methods: {
-    ...mapActions('resultWord', ['randomPickedUpWords'])
+    ...mapActions('randomPickedUp', ['randomPickedUpNumbers'])
   }
 }
 </script>
