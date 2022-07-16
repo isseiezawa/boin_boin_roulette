@@ -7,7 +7,7 @@
             src="../../assets/images/icon/boin_boin_roulette.png"
             class="img-fluis"
             alt="boin-picture"
-          />
+          >
         </router-link>
         <button
           class="navbar-toggler"
@@ -18,12 +18,20 @@
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon" />
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
+        <div
+          id="navbarNav"
+          class="collapse navbar-collapse"
+        >
           <ul class="navbar-nav">
             <li class="nav-item">
-              <router-link to="/" class="nav-link active">Top</router-link>
+              <router-link
+                to="/"
+                class="nav-link active"
+              >
+                Top
+              </router-link>
             </li>
           </ul>
         </div>

@@ -2,14 +2,14 @@
   <div id="the-roulette">
     <div class="container pt-4 pb-4 mt-5 mb-5 shadow rounded">
       <div class="box">
-        <word-box :selectedWords="selectedWords" />
+        <word-box :selected-words="selectedWords" />
       </div>
       <div class="mx-auto text-center">
         <transition name="fade">
           <div>
             <button @click="randomPickedUpNumbers(selectedWords)">
-            おす
-          </button>
+              おす
+            </button>
             <p>{{ pickedUpNumbers }}</p>
           </div>
         </transition>
