@@ -8,6 +8,10 @@
         <transition name="fade">
           <div v-if="pickedUpWords">
             <p>{{ pickedUpWords }}</p>
+            <span
+              v-for="(vowelOrConsonant, index) in vowelOrConsonantJudgement"
+              :key="index"
+            >{{ vowelOrConsonant }}</span>
           </div>
         </transition>
         <button
@@ -40,6 +44,18 @@ export default {
     ...mapGetters('randomPickedUp', ['pickedUpWords']),
     startOrStopButton() {
       return this.startOrStop ? 'スタート' : 'ストップ'
+    },
+    vowelOrConsonantJudgement() {
+      const vowels = 'あいうえおゐゑ'
+      var judgementResult = []
+      for(var i = 0; i < this.pickedUpWords.length; i++) {
+        if (vowels.includes(this.pickedUpWords.join('').charAt(i))) {
+          judgementResult.push('母音')
+        }else{
+          judgementResult.push('子音')
+        }
+      }
+      return judgementResult
     }
   },
   methods: {
