@@ -6,12 +6,15 @@
       </div>
       <div class="mx-auto text-center">
         <transition name="fade">
-          <div v-if="pickedUpWords">
-            <p>{{ pickedUpWords }}</p>
+          <div v-if="pickedUpWords" class="stylish-box">
+            <div class="h3">{{ pickedUpWords.join('') }}</div>
+            <div class="judge-box">
             <span
               v-for="(vowelOrConsonant, index) in vowelOrConsonantJudgement"
               :key="index"
+              :style="vowelOrConsonant == '母音' ? 'color: red;' : 'font-size: 10px' "
             >{{ vowelOrConsonant }}</span>
+            </div>
           </div>
         </transition>
         <button
@@ -87,6 +90,18 @@ export default {
 <style scoped>
 .container {
   background: radial-gradient(#ffffff, #fde9ff);
+}
+.stylish-box {
+  padding-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-weight: 700;
+  background-color: #F0F0F3;
+  display: block;
+  box-shadow: 1.5px 1.5px 2px rgba(174, 174, 192, 0.4), -1px -1px 3px #FFF;
+}
+.judge-box {
+  height: 2rem;
 }
 .btn-pink-moon {
     background: #ff8ad0;
