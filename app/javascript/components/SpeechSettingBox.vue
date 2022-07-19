@@ -3,31 +3,39 @@
     id="speech-setting-box"
     class="container setting-box"
   >
-    <h4>読み上げ設定</h4>
-    <div
-      v-if="voiceList.length"
-      class="form-group"
-    >
-      <label for="voice">音声</label>
-      <select
-        id="voice"
-        name="voice"
-        class="form-control"
-        :value="selectVoice"
-        @input="changeVoice($event.target.value)"
+    <h5 class="pt-2 pb-2 shadow-sm rounded">
+      読み上げ設定
+    </h5>
+    <transition name="slide-fade">
+      <div
+        v-if="voiceList.length"
+        class="form-group"
       >
-        <option
-          v-for="(voice, index) in voiceList"
-          :key="index"
-          :value="index"
+        <label
+          for="voice"
+          class="shadow-sm rounded"
+        >音声</label>
+        <select
+          id="voice"
+          name="voice"
+          class="form-control"
+          :value="selectVoice"
+          @input="changeVoice($event.target.value)"
         >
-          {{ voice }}
-        </option>
-      </select>
-    </div>
+          <option
+            v-for="(voice, index) in voiceList"
+            :key="index"
+            :value="index"
+            class="text-center"
+          >
+            <span class="h6">{{ voice }}</span>
+          </option>
+        </select>
+      </div>
+    </transition>
     <div class="form-group">
       <label for="volume">音量</label>
-      {{ volumeLevel }}
+      <span class="h6">{{ volumeLevel }}</span>
       <input
         id="volume"
         type="range"
@@ -41,7 +49,7 @@
     </div>
     <div class="form-group">
       <label for="speed">スピード</label>
-      {{ speedSetting }}
+      <span class="h6">{{ speedSetting }}</span>
       <input
         id="speed"
         type="range"
@@ -55,7 +63,7 @@
     </div>
     <div class="form-group">
       <label for="pitch">ピッチ</label>
-      {{ pitchSetting }}
+      <span class="h6">{{ pitchSetting }}</span>
       <input
         id="pitch"
         type="range"
@@ -100,5 +108,12 @@ export default {
   background: #fff;
   border-radius: 2%;
   box-shadow: -20px -10px 50px 5px rgb(150, 147, 147) inset;
+}
+.slide-fade-enter-active {
+  transition: all 2s ease;
+}
+.slide-fade-enter{
+  transform: translateY(10px);
+  opacity: 0;
 }
 </style>
