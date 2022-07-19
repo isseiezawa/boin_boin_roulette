@@ -6,14 +6,19 @@
       </div>
       <div class="mx-auto text-center">
         <transition name="fade">
-          <div v-if="pickedUpWords" class="stylish-box">
-            <div class="h3">{{ pickedUpWords.join('') }}</div>
+          <div
+            v-if="pickedUpWords"
+            class="stylish-box"
+          >
+            <div class="h3">
+              {{ pickedUpWords.join('') }}
+            </div>
             <div class="judge-box">
-            <span
-              v-for="(vowelOrConsonant, index) in vowelOrConsonantJudgement"
-              :key="index"
-              :style="vowelOrConsonant == '母音' ? 'color: red;' : 'font-size: 10px' "
-            >{{ vowelOrConsonant }}</span>
+              <span
+                v-for="(vowelOrConsonant, index) in vowelOrConsonantJudgement"
+                :key="index"
+                :style="vowelOrConsonant == '母音' ? 'color: red;' : 'font-size: 10px' "
+              >{{ vowelOrConsonant }}</span>
             </div>
           </div>
         </transition>
@@ -35,9 +40,6 @@ import { mapActions, mapGetters } from 'vuex'
 export default {
   components: {
     WordBox
-  },
-  created() {
-    speechSynthesis.getVoices()
   },
   data() {
     return {
@@ -69,6 +71,9 @@ export default {
       }
       return judgementResult
     }
+  },
+  created() {
+    speechSynthesis.getVoices()
   },
   methods: {
     ...mapActions('randomPickedUp', ['randomPickedUpNumbers']),

@@ -1,16 +1,26 @@
 <template>
-  <div id="speech-setting-box" class="container setting-box">
+  <div
+    id="speech-setting-box"
+    class="container setting-box"
+  >
     <h4>読み上げ設定</h4>
-    <div class="form-group" v-if="voiceList.length">
+    <div
+      v-if="voiceList.length"
+      class="form-group"
+    >
       <label for="voice">音声</label>
       <select
-        name="voice"
         id="voice"
+        name="voice"
         class="form-control"
         :value="selectVoice"
         @input="changeVoice($event.target.value)"
       >
-        <option v-for="(voice, index) in voiceList" :value="index" :key="index">
+        <option
+          v-for="(voice, index) in voiceList"
+          :key="index"
+          :value="index"
+        >
           {{ voice }}
         </option>
       </select>
@@ -19,43 +29,43 @@
       <label for="volume">音量</label>
       {{ volumeLevel }}
       <input
-        type="range"
         id="volume"
+        type="range"
         class="form-range"
         min="0"
         max="1"
         step="0.1"
         :value="volumeLevel"
         @input="changeVolume($event.target.value)"
-      />
+      >
     </div>
     <div class="form-group">
       <label for="speed">スピード</label>
       {{ speedSetting }}
       <input
-        type="range"
         id="speed"
+        type="range"
         class="form-range"
         min="0"
         max="1"
         step="0.1"
         :value="speedSetting"
         @input="changeSpeed($event.target.value)"
-      />
+      >
     </div>
     <div class="form-group">
       <label for="pitch">ピッチ</label>
       {{ pitchSetting }}
       <input
-        type="range"
         id="pitch"
+        type="range"
         class="form-range"
         min="0"
         max="2"
         step="0.1"
         :value="pitchSetting"
         @input="changePitch($event.target.value)"
-      />
+      >
     </div>
   </div>
 </template>
