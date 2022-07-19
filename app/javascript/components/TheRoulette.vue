@@ -6,14 +6,19 @@
       </div>
       <div class="mx-auto text-center">
         <transition name="fade">
-          <div v-if="pickedUpWords" class="stylish-box">
-            <div class="h3">{{ pickedUpWords.join('') }}</div>
+          <div
+            v-if="pickedUpWords"
+            class="stylish-box"
+          >
+            <div class="h3">
+              {{ pickedUpWords.join('') }}
+            </div>
             <div class="judge-box">
-            <span
-              v-for="(vowelOrConsonant, index) in vowelOrConsonantJudgement"
-              :key="index"
-              :style="vowelOrConsonant == '母音' ? 'color: red;' : 'font-size: 10px' "
-            >{{ vowelOrConsonant }}</span>
+              <span
+                v-for="(vowelOrConsonant, index) in vowelOrConsonantJudgement"
+                :key="index"
+                :style="vowelOrConsonant == '母音' ? 'color: red;' : 'font-size: 10px' "
+              >{{ vowelOrConsonant }}</span>
             </div>
           </div>
         </transition>
@@ -45,6 +50,12 @@ export default {
   computed: {
     ...mapGetters('selectedWords', ['selectedWords']),
     ...mapGetters('randomPickedUp', ['pickedUpWords']),
+    ...mapGetters('voiceSetting', [
+      'selectVoice',
+      'volumeLevel',
+      'speedSetting',
+      'pitchSetting'
+      ]),
     startOrStopButton() {
       return this.startOrStop ? 'スタート' : 'ストップ'
     },
@@ -61,8 +72,12 @@ export default {
       return judgementResult
     }
   },
+  created() {
+    speechSynthesis.getVoices()
+  },
   methods: {
     ...mapActions('randomPickedUp', ['randomPickedUpNumbers']),
+    ...mapActions('voiceSetting', ['setVoiceList']),
     startLoop(time) {
       if (!this.intervId) {
         this.intervId = setInterval(this.randomPickedUpNumbers,
@@ -82,6 +97,19 @@ export default {
       clearInterval(this.intervId)
       this.intervId = null
       this.startOrStop = true
+      this.getVoice();
+    },
+    getVoice() {
+      const speechOption = new SpeechSynthesisUtterance()
+      const voice = speechSynthesis.getVoices()
+      this.setVoiceList(voice)
+      speechOption.voice = voice[this.selectVoice]
+      speechOption.volume = this.volumeLevel
+      speechOption.rate = this.speedSetting
+      speechOption.pitch = this.pitchSetting
+      speechOption.text = this.pickedUpWords.join('')
+      speechSynthesis.cancel();
+      speechSynthesis.speak(speechOption);
     }
   }
 }
