@@ -1,15 +1,18 @@
 <template>
   <div class="container text-center">
     <the-roulette />
+    <speech-setting-box />
   </div>
 </template>
 
 <script>
 import TheRoulette from '../../components/TheRoulette.vue'
+import SpeechSettingBox from '../../components/SpeechSettingBox.vue'
 
 export default {
   components: {
-    TheRoulette
+    TheRoulette,
+    SpeechSettingBox
   }
 }
 </script>

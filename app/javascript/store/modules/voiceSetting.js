@@ -13,10 +13,33 @@ const getters = {
 }
 
 const mutations = {
+  changeVoice(state, selectVoice) {
+    state.selectVoice = Number(selectVoice)
+  },
+  changeVolume(state, selectVolume) {
+    state.volumeLevel = Number(selectVolume)
+  },
+  changeSpeed(state, selectSpeed) {
+    state.speedSetting = Number(selectSpeed)
+  },
+  changePitch(state, selectPitch) {
+    state.pitchSetting = Number(selectPitch)
+  }
 }
 
 const actions = {
-
+  changeVoice({ commit }, selectVoice) {
+    commit('changeVoice', selectVoice)
+  },
+  changeVolume({ commit }, selectVolume) {
+    commit('changeVolume', selectVolume)
+  },
+  changeSpeed({ commit }, selectSpeed) {
+    commit('changeSpeed', selectSpeed)
+  },
+  changePitch({ commit }, selectPitch) {
+    commit('changePitch', selectPitch)
+  },
 }
 
 export default {
