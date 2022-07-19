@@ -36,6 +36,9 @@ export default {
   components: {
     WordBox
   },
+  created() {
+    speechSynthesis.getVoices()
+  },
   data() {
     return {
       intervId: null,
@@ -45,6 +48,12 @@ export default {
   computed: {
     ...mapGetters('selectedWords', ['selectedWords']),
     ...mapGetters('randomPickedUp', ['pickedUpWords']),
+    ...mapGetters('voiceSetting', [
+      'selectVoice',
+      'volumeLevel',
+      'speedSetting',
+      'pitchSetting'
+      ]),
     startOrStopButton() {
       return this.startOrStop ? 'スタート' : 'ストップ'
     },
@@ -82,6 +91,18 @@ export default {
       clearInterval(this.intervId)
       this.intervId = null
       this.startOrStop = true
+      this.getVoice();
+    },
+    getVoice() {
+      const speechOption = new SpeechSynthesisUtterance()
+      const voice = speechSynthesis.getVoices()
+      speechOption.voice = voice[this.selectVoice]
+      speechOption.volume = this.volumeLevel
+      speechOption.rate = this.speedSetting
+      speechOption.pitch = this.pitchSetting
+      speechOption.text = this.pickedUpWords.join('')
+      speechSynthesis.cancel();
+      speechSynthesis.speak(speechOption);
     }
   }
 }
