@@ -72,6 +72,7 @@ export default {
   },
   methods: {
     ...mapActions('randomPickedUp', ['randomPickedUpNumbers']),
+    ...mapActions('voiceSetting', ['setVoiceList']),
     startLoop(time) {
       if (!this.intervId) {
         this.intervId = setInterval(this.randomPickedUpNumbers,
@@ -96,6 +97,7 @@ export default {
     getVoice() {
       const speechOption = new SpeechSynthesisUtterance()
       const voice = speechSynthesis.getVoices()
+      this.setVoiceList(voice)
       speechOption.voice = voice[this.selectVoice]
       speechOption.volume = this.volumeLevel
       speechOption.rate = this.speedSetting

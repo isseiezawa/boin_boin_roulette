@@ -1,6 +1,20 @@
 <template>
   <div id="speech-setting-box" class="container setting-box">
     <h4>読み上げ設定</h4>
+    <div class="form-group" v-if="voiceList.length">
+      <label for="voice">音声</label>
+      <select
+        name="voice"
+        id="voice"
+        class="form-control"
+        :value="selectVoice"
+        @input="changeVoice($event.target.value)"
+      >
+        <option v-for="(voice, index) in voiceList" :value="index" :key="index">
+          {{ voice }}
+        </option>
+      </select>
+    </div>
     <div class="form-group">
       <label for="volume">音量</label>
       {{ volumeLevel }}
@@ -47,35 +61,34 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   computed: {
-    ...mapGetters('voiceSetting', [
-      'voiceList',
-      'selectVoice',
-      'volumeLevel',
-      'speedSetting',
-      'pitchSetting',
+    ...mapGetters("voiceSetting", [
+      "voiceList",
+      "selectVoice",
+      "volumeLevel",
+      "speedSetting",
+      "pitchSetting",
     ]),
   },
   methods: {
-    ...mapActions('voiceSetting', [
-      'changeVoice',
-      'changeVolume',
-      'changeSpeed',
-      'changePitch'
-      ]
-    ),
+    ...mapActions("voiceSetting", [
+      "changeVoice",
+      "changeVolume",
+      "changeSpeed",
+      "changePitch",
+    ]),
   },
-}
+};
 </script>
 
 <style scoped>
-.setting-box{
+.setting-box {
   width: 50%;
-	background: #FFF;
+  background: #fff;
   border-radius: 2%;
-	box-shadow: -20px -10px 50px 5px rgb(150, 147, 147) inset;
+  box-shadow: -20px -10px 50px 5px rgb(150, 147, 147) inset;
 }
 </style>

@@ -1,4 +1,5 @@
 const state = {
+  voiceList: [],
   selectVoice: 49,
   volumeLevel: 0.5,
   speedSetting: 0.2,
@@ -6,6 +7,7 @@ const state = {
 }
 
 const getters = {
+  voiceList: state => state.voiceList,
   selectVoice: state => state.selectVoice,
   volumeLevel: state => state.volumeLevel,
   speedSetting: state => state.speedSetting,
@@ -13,6 +15,12 @@ const getters = {
 }
 
 const mutations = {
+  setVoiceList(state, voiceList) {
+    state.voiceList = []
+    for(var i = 0; i < voiceList.length; i++) {
+      state.voiceList.push(voiceList[i].name)
+    }
+  },
   changeVoice(state, selectVoice) {
     state.selectVoice = Number(selectVoice)
   },
@@ -28,6 +36,9 @@ const mutations = {
 }
 
 const actions = {
+  setVoiceList({ commit }, voiceList) {
+    commit('setVoiceList', voiceList)
+  },
   changeVoice({ commit }, selectVoice) {
     commit('changeVoice', selectVoice)
   },
