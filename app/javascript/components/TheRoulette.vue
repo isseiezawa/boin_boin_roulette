@@ -22,6 +22,11 @@
             </div>
           </div>
         </transition>
+        <select-the-number-of-pickups-box
+          :select-the-number-of-pickups="selectTheNumberOfPickups"
+          :selected-pickup-number="selectedPickupNumber"
+          @input="selectedPickupNumber = $event"
+        />
         <button
           class="btn btn-pink-moon"
           @click="startOrStop ? startLoop(100) : slowLoop()"
@@ -36,16 +41,26 @@
 <script>
 import WordBox from './WordBox.vue'
 import { mapActions, mapGetters } from 'vuex'
+import SelectTheNumberOfPickupsBox from "../components/selectTheNumberOfPickupsBox.vue";
 
 export default {
   components: {
-    WordBox
+    WordBox,
+    SelectTheNumberOfPickupsBox,
   },
   data() {
     return {
       intervId: null,
-      startOrStop: true
-    }
+      startOrStop: true,
+      selectedPickupNumber: 2,
+      selectTheNumberOfPickups: [
+        { text: "2個", value: 2 },
+        { text: "3個", value: 3 },
+        { text: "4個", value: 4 },
+        { text: "5個", value: 5 },
+        { text: "6個", value: 6 },
+      ],
+    };
   },
   computed: {
     ...mapGetters('selectedWords', ['selectedWords']),
