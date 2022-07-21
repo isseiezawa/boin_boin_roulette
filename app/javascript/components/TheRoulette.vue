@@ -35,6 +35,23 @@
         >
           {{ startOrStopButton }}
         </button>
+        <transition name="fade">
+          <div
+            v-if="pickedUpWords"
+            class="mt-2"
+          >
+            <p v-if=" isSmartPhone">
+              <span class="text-danger text-decoration-underline fst-italic">※スマートフォンの場合、一度読み上げボタンを押すと読み上げるようになります。</span>
+            </p>
+            <button
+              :disabled="!startOrStop"
+              class="btn btn-neumorphism"
+              @click="getVoice()"
+            >
+              読み上げ
+            </button>
+          </div>
+        </transition>
       </div>
     </div>
   </div>
@@ -88,6 +105,13 @@ export default {
       }
       return judgementResult;
     },
+    isSmartPhone() {
+      if(navigator.userAgent.match(/iPhone|Android.+Mobile/)) {
+        return true;
+      } else {
+        return false;
+      }
+    }
   },
   created() {
     speechSynthesis.getVoices();
@@ -159,16 +183,30 @@ export default {
   color: #fff;
   border: 3px solid #eee;
   border-radius: 15px;
+}
+.btn-pink-moon:active {
+  color: #ff0000;
+}
+.btn-neumorphism {
+  border-radius: 20%;
+  background: #EBECF0;
+  box-shadow:  2px 2px 10px #c8c9cc, 
+              -2px -2px 10px #ffffff;
   transition: 0.3s;
 }
-.btn-pink-moon:hover {
+.btn-neumorphism:hover {
   color: #ff0000;
+}
+.btn-neumorphism:active {
+  border-radius: 20%;
+  background: #EBECF0;
+  box-shadow: inset 5px 5px 20px #c8c9cc, 
+              inset -5px -5px 20px #ffffff;
 }
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 2s;
 }
-
 .fade-enter, .fade-leave-to {
   opacity: 0;
 }
