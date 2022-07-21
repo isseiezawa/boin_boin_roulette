@@ -105,6 +105,7 @@ export default {
 <style scoped>
 .setting-box {
   width: 50%;
+  margin-bottom: 15px;
   background: #fff;
   border-radius: 2%;
   box-shadow: -20px -10px 50px 5px rgb(150, 147, 147) inset;
@@ -113,7 +114,7 @@ export default {
   transition: all 2s ease;
 }
 .slide-fade-enter{
-  transform: translateY(10px);
+  transform: translateY(-10px);
   opacity: 0;
 }
 </style>

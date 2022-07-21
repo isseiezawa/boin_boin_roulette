@@ -1,5 +1,5 @@
 <template>
-  <div class="container text-center">
+  <div class="container w-100 text-center">
     <the-roulette />
     <speech-setting-box />
   </div>

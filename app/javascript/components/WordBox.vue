@@ -4,7 +4,7 @@
       <li
         v-for="(selectedWord, index) in selectedWords"
         :key="index"
-        :class="pickedUpNumbers.includes(index) ? 'selected-word' : '' "
+        :class="pickedUpNumbers.includes(index) ? 'selected-word' : ''"
       >
         <span class="perfect-circle">
           <span class="circle">{{ selectedWord }}</span>
@@ -15,18 +15,18 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 
 export default {
   props: {
     selectedWords: {
       type: Array,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
-    ...mapGetters('randomPickedUp', ['pickedUpNumbers'])
-  }
+    ...mapGetters("randomPickedUp", ["pickedUpNumbers"]),
+  },
 };
 </script>
 
