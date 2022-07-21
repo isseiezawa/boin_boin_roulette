@@ -87,7 +87,7 @@ li.boin-style span.perfect-circle:before {
   border-radius: 100%;
   background-color: rgb(237, 127, 145);
 }
-.selected-word {
+li.selected-word {
   background: radial-gradient(#fea0a0, #ff0000);
 }
 </style>

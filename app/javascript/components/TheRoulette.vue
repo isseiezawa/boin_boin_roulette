@@ -1,6 +1,6 @@
 <template>
   <div id="the-roulette">
-    <div class="container pt-4 pb-4 mt-5 mb-5 shadow rounded">
+    <div class="container-fluid pt-4 pb-4 mt-5 mb-5 shadow rounded">
       <div class="box">
         <word-box :selected-words="selectedWords" />
       </div>
@@ -161,7 +161,7 @@ export default {
 </script>
 
 <style scoped>
-.container {
+.container-fluid {
   background: radial-gradient(#ffffff, #fde9ff);
 }
 .stylish-box {
