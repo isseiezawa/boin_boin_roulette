@@ -4,10 +4,10 @@
       <li
         v-for="(selectedWord, index) in selectedWords"
         :key="index"
-        :class="pickedUpNumbers.includes(index) ? 'selected-word' : ''"
+        :class="[pickedUpNumbers.includes(index) ? 'selected-word' : '', selectedStyle ? 'boin-style' : 'simple-style']"
       >
-        <span class="perfect-circle">
-          <span class="circle">{{ selectedWord }}</span>
+        <span :class="selectedStyle ? 'perfect-circle' : ''">
+          <span :class="selectedStyle ? 'circle' : ''">{{ selectedWord }}</span>
         </span>
       </li>
     </ul>
@@ -26,6 +26,7 @@ export default {
   },
   computed: {
     ...mapGetters("randomPickedUp", ["pickedUpNumbers"]),
+    ...mapGetters("selectedWordBoxStyle", ["selectedStyle"])
   },
 };
 </script>
@@ -40,32 +41,32 @@ ul {
   padding: 0;
   margin: 10px;
 }
-
-li {
-  /* 枠線をつけて1列に5つ並べる */
+li.simple-style {
+  width: 10%;
+  list-style: none;
+  border: 2px solid black
+}
+li.boin-style {
   border-radius: 100%;
   width: 10%;
-  /* 正方形にするのに必要な部分 */
   height: auto;
   position: relative;
   list-style: none;
   font-size: 40%;
   background: radial-gradient(#ffffff, #f7b072);
 }
-li:before {
+li.boin-style:before {
   content: "";
   display: block;
-  padding-top: 100%; /* ここを100％にすることで正方形になる */
+  padding-top: 100%;
 }
-li span.perfect-circle {
-  /* 正方形にするのに必要な部分 */
+li.boin-style span.perfect-circle {
   display: block;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  /* 中央寄せ */
   text-align: center;
   padding: 2px;
   box-sizing: border-box;
@@ -74,8 +75,7 @@ li span.perfect-circle {
   -o-box-sizing: border-box;
   -ms-box-sizing: border-box;
 }
-/* 高さの中央揃えに必要な部分 */
-li span.perfect-circle:before {
+li.boin-style span.perfect-circle:before {
   content: "";
   height: 100%;
   vertical-align: middle;
