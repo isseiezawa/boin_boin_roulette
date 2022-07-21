@@ -34,11 +34,24 @@
               </router-link>
             </li>
             <li class="nav-item">
-              <transition name="slide-fade" mode="out-in">
-                <button @click="styleChange(!selectedStyle)" class="btn btn-default navbar-btn" v-if="selectedStyle" key="simple-button">
+              <transition
+                name="slide-fade"
+                mode="out-in"
+              >
+                <button
+                  v-if="selectedStyle"
+                  key="simple-button"
+                  class="btn btn-default navbar-btn"
+                  @click="styleChange(!selectedStyle)"
+                >
                   シンプルモードに切り替え
                 </button>
-                <button @click="styleChange(!selectedStyle)" class="btn btn-default navbar-btn" v-else key="boin-button">
+                <button
+                  v-else
+                  key="boin-button"
+                  class="btn btn-default navbar-btn"
+                  @click="styleChange(!selectedStyle)"
+                >
                   ボインモードに切り替え
                 </button>
               </transition>
