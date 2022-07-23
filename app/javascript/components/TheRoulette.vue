@@ -117,7 +117,10 @@ export default {
     speechSynthesis.getVoices();
   },
   methods: {
-    ...mapActions("randomPickedUp", ["randomPickedUpNumbers"]),
+    ...mapActions("randomPickedUp", [
+      "randomPickedUpNumbers",
+      "saveWord"
+      ]),
     ...mapActions("voiceSetting", ["setVoiceList"]),
     startLoop(time) {
       if (!this.intervId) {
@@ -143,6 +146,7 @@ export default {
       this.intervId = null;
       this.startOrStop = true;
       this.getVoice();
+      this.handleSaveWord(this.pickedUpWords);
     },
     getVoice() {
       const speechOption = new SpeechSynthesisUtterance();
@@ -155,6 +159,13 @@ export default {
       speechOption.text = this.pickedUpWords.join("");
       speechSynthesis.cancel();
       speechSynthesis.speak(speechOption);
+    },
+    async handleSaveWord(word) {
+      try {
+        await this.saveWord(word)
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 };
