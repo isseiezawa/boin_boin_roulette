@@ -1,9 +1,24 @@
 <template>
-  <div id="result-index" class="container-fluid ">
-    <h2 class="text-center mb-4">集めたワード</h2>
+  <div
+    id="result-index"
+    class="container-fluid "
+  >
+    <h2 class="text-center mb-4">
+      集めた言葉
+    </h2>
     <div class="row row-cols-4">
-      <div v-for="(resultWord, index) in resultWords" :key="index" class="col border rounded shadow-sm bg-light">
-        <div><font-awesome-icon :icon="['far', 'circle-play']" @click="getVoice(resultWord.word)" class="btn p-0" />{{ resultWord.word }}</div>
+      <div
+        v-for="(resultWord, index) in resultWords"
+        :key="index"
+        class="col border rounded shadow-sm bg-light"
+      >
+        <div>
+          <font-awesome-icon
+            :icon="['far', 'circle-play']"
+            class="btn p-0"
+            @click="getVoice(resultWord.word)"
+          />{{ resultWord.word }}
+        </div>
       </div>
     </div>
     <speech-setting-box class="mt-3" />
@@ -15,10 +30,6 @@ import SpeechSettingBox from '../../components/SpeechSettingBox.vue'
 import { mapGetters, mapActions } from "vuex"
 
 export default {
-  created() {
-    this.fetchResultWords();
-    speechSynthesis.getVoices();
-  },
   components: {
     SpeechSettingBox
   },
@@ -30,6 +41,10 @@ export default {
       "speedSetting",
       "pitchSetting",
     ]),
+  },
+  created() {
+    this.fetchResultWords();
+    speechSynthesis.getVoices();
   },
   methods: {
     ...mapActions("randomPickedUp", ["fetchResultWords"]),

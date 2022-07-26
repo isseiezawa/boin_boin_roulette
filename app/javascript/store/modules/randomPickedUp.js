@@ -48,7 +48,6 @@ const actions = {
       for(var i = 0; i < selectedPickupNumber; i++) {
         wordStorage.push(selectedWords[state.pickedUpNumbers[i]])
       }
-      axios
       commit('randomPickedUpWords', wordStorage)
     }
   },
