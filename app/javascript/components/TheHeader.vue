@@ -27,10 +27,18 @@
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
               <router-link
-                to="/"
+                :to="{ name: 'TopIndex' }"
                 class="nav-link active"
               >
                 Top
+              </router-link>
+            </li>
+            <li class="nav-item">
+              <router-link
+                :to="{ name: 'ResultIndex' }"
+                class="nav-link active"
+              >
+                集めた言葉
               </router-link>
             </li>
             <li class="nav-item">

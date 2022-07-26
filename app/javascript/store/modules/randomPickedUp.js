@@ -1,11 +1,15 @@
+import axios from '../../plugins/axios'
+
 const state = {
   pickedUpNumbers: '',
-  pickedUpWords: ''
+  pickedUpWords: '',
+  resultWords: []
 }
 
 const getters = {
   pickedUpNumbers: state => state.pickedUpNumbers,
-  pickedUpWords: state => state.pickedUpWords
+  pickedUpWords: state => state.pickedUpWords,
+  resultWords: state => state.resultWords
 }
 
 const mutations = {
@@ -14,6 +18,12 @@ const mutations = {
   },
   randomPickedUpWords(state, wordStorage) {
     state.pickedUpWords = wordStorage
+  },
+  fetchResultWords(state, words) {
+    state.resultWords = words
+  },
+  saveWord(state, word) {
+    state.resultWords.push(word)
   }
 }
 
@@ -40,6 +50,21 @@ const actions = {
       }
       commit('randomPickedUpWords', wordStorage)
     }
+  },
+  fetchResultWords({ commit }) {
+    axios.get('results')
+      .then(res => {
+        commit('fetchResultWords', res.data)
+      })
+      .catch(err => console.log(err.response))
+  },
+  saveWord({ commit }, word) {
+    return axios.post('results', {
+      word: word.join('')
+    })
+    .then(res => {
+      commit('saveWord', res.data)
+    })
   }
 }
 
