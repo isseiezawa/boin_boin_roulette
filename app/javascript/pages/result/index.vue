@@ -2,8 +2,8 @@
   <div id="result-index" class="container-fluid ">
     <h2 class="text-center mb-4">集めたワード</h2>
     <div class="row row-cols-4">
-      <div v-for="(resultWord, index) in resultWords" :key="index" class="col border">
-        <div>{{ resultWord.word }}<button @click="getVoice(resultWord.word)">再生</button></div>
+      <div v-for="(resultWord, index) in resultWords" :key="index" class="col border rounded shadow-sm bg-light">
+        <div><font-awesome-icon :icon="['far', 'circle-play']" @click="getVoice(resultWord.word)" class="btn p-0" />{{ resultWord.word }}</div>
       </div>
     </div>
     <speech-setting-box class="mt-3" />
