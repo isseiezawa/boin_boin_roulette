@@ -2,6 +2,9 @@
   "name": "boin_boin_roulette",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.1.2",
+    "@fortawesome/free-regular-svg-icons": "^6.1.2",
+    "@fortawesome/vue-fontawesome": "^2.0.8",
     "@popperjs/core": "^2.11.5",
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
