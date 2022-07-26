@@ -19,6 +19,9 @@ const mutations = {
   randomPickedUpWords(state, wordStorage) {
     state.pickedUpWords = wordStorage
   },
+  fetchResultWords(state, words) {
+    state.resultWords = words
+  },
   saveWord(state, word) {
     state.resultWords.push(word)
   }
@@ -49,13 +52,19 @@ const actions = {
       commit('randomPickedUpWords', wordStorage)
     }
   },
+  fetchResultWords({ commit }) {
+    axios.get('results')
+      .then(res => {
+        commit('fetchResultWords', res.data)
+      })
+      .catch(err => console.log(err.response))
+  },
   saveWord({ commit }, word) {
     return axios.post('results', {
       word: word.join('')
     })
     .then(res => {
-      console.log('ここまで')
-      commit('saveWord', res.data.word)
+      commit('saveWord', res.data)
     })
   }
 }
