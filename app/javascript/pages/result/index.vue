@@ -3,9 +3,12 @@
     id="result-index"
     class="container-fluid "
   >
-    <h2 class="text-center mb-4">
-      集めた言葉
-    </h2>
+    <div class="text-center">
+      <h2>
+        集めた言葉
+      </h2>
+      <p>合計:{{ resultWords.length }}</p>
+    </div>
     <div class="row row-cols-4">
       <div
         v-for="(resultWord, index) in resultWords"
