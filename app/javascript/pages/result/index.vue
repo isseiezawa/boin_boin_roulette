@@ -20,7 +20,8 @@
             :icon="['fas', 'circle-play']"
             class="btn p-0"
             @click="getVoice(resultWord.word)"
-          />{{ resultWord.word }}
+          />
+          <span v-html="resultWordIsVowels(resultWord.word)" />
         </div>
       </div>
     </div>
@@ -44,6 +45,21 @@ export default {
       "speedSetting",
       "pitchSetting",
     ]),
+    resultWordIsVowels() {
+      return function (resultWord) {
+        const vowels = "あいうえおゐゑ"
+        let words = ''
+        for(var i = 0; i < resultWord.length; i++) {
+          let oneWord = resultWord.charAt(i)
+          if (vowels.includes(oneWord)) {
+            words += "<span class='text-danger fw-bolder'>" + oneWord + "</span>"
+          } else {
+            words += oneWord
+          }
+        }
+        return words
+      }
+    }
   },
   created() {
     this.fetchResultWords();
