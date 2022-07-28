@@ -5,7 +5,6 @@ class Api::ResultsController < ApplicationController
   end
 
   def create
-    puts current_user.name
     @result = current_user.results.build(result_params)
 
     if @result.save
