@@ -1,5 +1,8 @@
 <template>
-  <div id="login-form" class="container">
+  <div
+    id="login-form"
+    class="container"
+  >
     <div class="h1 text-center mb-3 shadow-sm bg-light">
       ログイン
     </div>
