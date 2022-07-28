@@ -1,11 +1,11 @@
 class Api::ResultsController < ApplicationController
   def index
-    @results = Result.all
+    @results = current_user.results.all
     render json: @results
   end
 
   def create
-    @result = Result.new(result_params)
+    @result = current_user.results.build(result_params)
 
     if @result.save
       render json: @result

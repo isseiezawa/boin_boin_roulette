@@ -1,12 +1,23 @@
 <!DOCTYPE html>
 <html>
-  <head>
+  <head prefix="og: https://ogp.me/ns#">
     <title>BoinBoinRoulette</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="母音ルーレットを回してボインボインを目指そう!" />
+    <meta property="og:title" content="ボインボインルーレット" />
+    <meta property="og:description" content="母音ルーレットを回してボインボインを目指そう!" />
+    <meta property="og:url" content="<%= request.url %>" />
+    <meta property="og:site_name" content="ボインボインルーレット" />
+    <meta property="og:image" content="../../assetsimages/icon/boin_boin_roulette-568896a3.png" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@issei423" />
+    <%= favicon_link_tag '/public/favicon.ico' %>
   </head>
 
   <body>

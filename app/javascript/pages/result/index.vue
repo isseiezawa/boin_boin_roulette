@@ -3,9 +3,12 @@
     id="result-index"
     class="container-fluid "
   >
-    <h2 class="text-center mb-4">
-      集めた言葉
-    </h2>
+    <div class="text-center">
+      <h2>
+        集めた言葉
+      </h2>
+      <p>合計:{{ resultWords.length }}</p>
+    </div>
     <div class="row row-cols-4">
       <div
         v-for="(resultWord, index) in resultWords"
@@ -14,10 +17,11 @@
       >
         <div>
           <font-awesome-icon
-            :icon="['far', 'circle-play']"
+            :icon="['fas', 'circle-play']"
             class="btn p-0"
             @click="getVoice(resultWord.word)"
-          />{{ resultWord.word }}
+          />
+          <span v-html="resultWordIsVowels(resultWord.word)" />
         </div>
       </div>
     </div>
@@ -41,6 +45,21 @@ export default {
       "speedSetting",
       "pitchSetting",
     ]),
+    resultWordIsVowels() {
+      return function (resultWord) {
+        const vowels = "あいうえおゐゑ"
+        let words = ''
+        for(var i = 0; i < resultWord.length; i++) {
+          let oneWord = resultWord.charAt(i)
+          if (vowels.includes(oneWord)) {
+            words += "<span class='text-danger fw-bolder'>" + oneWord + "</span>"
+          } else {
+            words += oneWord
+          }
+        }
+        return words
+      }
+    }
   },
   created() {
     this.fetchResultWords();
