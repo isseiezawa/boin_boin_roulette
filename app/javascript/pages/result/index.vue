@@ -14,7 +14,7 @@
       >
         <div>
           <font-awesome-icon
-            :icon="['far', 'circle-play']"
+            :icon="['fas', 'circle-play']"
             class="btn p-0"
             @click="getVoice(resultWord.word)"
           />{{ resultWord.word }}

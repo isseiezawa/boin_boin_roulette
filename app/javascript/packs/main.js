@@ -7,10 +7,10 @@ import 'bootstrap/dist/css/bootstrap.css'
 // ドロップダウン使用の為追加
 import "bootstrap/dist/js/bootstrap.bundle.min.js"
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faCirclePlay } from '@fortawesome/free-regular-svg-icons'
+import { faCirclePlay, faUser  } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(faCirclePlay)
+library.add(faCirclePlay, faUser)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
