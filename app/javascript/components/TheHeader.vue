@@ -25,7 +25,7 @@
           class="collapse navbar-collapse"
         >
           <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
+            <li class="nav-item" key="boin-boin-roulette">
               <router-link
                 :to="{ name: 'TopIndex' }"
                 class="nav-link active"
@@ -33,7 +33,7 @@
                 ボインボインルーレット
               </router-link>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" key="mode-select">
               <transition
                 name="slide-fade"
                 mode="out-in"
@@ -56,8 +56,8 @@
                 </button>
               </transition>
             </li>
-            <template v-if="authUser">
-              <li class="nav-item">
+            <transition name="slide-fade" mode="out-in">
+              <li class="nav-item" key="word-list" v-if="authUser">
                 <router-link
                   :to="{ name: 'ResultIndex' }"
                   class="nav-link active"
@@ -65,7 +65,17 @@
                   集めた言葉
                 </router-link>
               </li>
-              <li class="nav-item">
+              <li class="nav-item" key="login" v-if="!authUser">
+                <router-link
+                  :to="{ name: 'LoginIndex' }"
+                  class="nav-link active"
+                >
+                  ログイン
+                </router-link>
+              </li>
+            </transition>
+            <transition name="slide-fade" mode="out-in">
+              <li class="nav-item" key="logout" v-if="authUser">
                 <router-link
                   to="#"
                   class="nav-link active"
@@ -74,17 +84,7 @@
                   ログアウト
                 </router-link>
               </li>
-            </template>
-            <template v-else>
-              <li class="nav-item">
-                <router-link
-                  :to="{ name: 'LoginIndex' }"
-                  class="nav-link active"
-                >
-                  ログイン
-                </router-link>
-              </li>
-              <li class="nav-item">
+              <li class="nav-item" key="register" v-if="!authUser">
                 <router-link
                   :to="{ name: 'RegisterIndex' }"
                   class="nav-link active"
@@ -92,7 +92,7 @@
                   ユーザー登録
                 </router-link>
               </li>
-            </template>
+            </transition>
           </ul>
         </div>
       </div>
