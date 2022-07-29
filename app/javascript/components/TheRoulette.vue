@@ -31,6 +31,7 @@
         />
         <button
           class="btn btn-pink-moon"
+          :disabled="disabledButton"
           @click="startOrStop ? startLoop(100) : slowLoop()"
         >
           {{ startOrStopButton }}
@@ -71,6 +72,7 @@ export default {
     return {
       intervId: null,
       startOrStop: true,
+      disabledButton: false,
       selectedPickupNumber: 2,
       selectTheNumberOfPickups: [
         { text: "2個", value: 2 },
@@ -136,17 +138,23 @@ export default {
       }
     },
     slowLoop() {
+      this.disabledButton = true
       clearInterval(this.intervId);
       this.intervId = null;
       this.startLoop(500);
       setTimeout(this.stopLoop, 3.0 * 1000);
     },
-    stopLoop() {
+    async stopLoop() {
       clearInterval(this.intervId);
       this.intervId = null;
       this.startOrStop = true;
       this.getVoice();
-      this.handleSaveWord(this.pickedUpWords);
+      try {
+        await this.handleSaveWord(this.pickedUpWords);
+        this.disabledButton = false
+      } catch (error) {
+        console.log(error)
+      }
     },
     getVoice() {
       const speechOption = new SpeechSynthesisUtterance();
