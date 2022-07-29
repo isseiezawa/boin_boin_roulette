@@ -30,15 +30,7 @@
                 :to="{ name: 'TopIndex' }"
                 class="nav-link active"
               >
-                Top
-              </router-link>
-            </li>
-            <li class="nav-item">
-              <router-link
-                :to="{ name: 'ResultIndex' }"
-                class="nav-link active"
-              >
-                集めた言葉
+                ボインボインルーレット
               </router-link>
             </li>
             <li class="nav-item">
@@ -49,7 +41,7 @@
                 <button
                   v-if="selectedStyle"
                   key="simple-button"
-                  class="btn btn-default navbar-btn"
+                  class="btn btn-default navbar-btn nav-link active"
                   @click="styleChange(!selectedStyle)"
                 >
                   シンプルモードに切り替え
@@ -57,13 +49,50 @@
                 <button
                   v-else
                   key="boin-button"
-                  class="btn btn-default navbar-btn"
+                  class="btn btn-default navbar-btn nav-link active"
                   @click="styleChange(!selectedStyle)"
                 >
                   ボインモードに切り替え
                 </button>
               </transition>
             </li>
+            <template v-if="authUser">
+              <li class="nav-item">
+                <router-link
+                  :to="{ name: 'ResultIndex' }"
+                  class="nav-link active"
+                >
+                  集めた言葉
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link
+                  to="#"
+                  class="nav-link active"
+                  @click.native="handleLogout"
+                >
+                  ログアウト
+                </router-link>
+              </li>
+            </template>
+            <template v-else>
+              <li class="nav-item">
+                <router-link
+                  :to="{ name: 'LoginIndex' }"
+                  class="nav-link active"
+                >
+                  ログイン
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link
+                  :to="{ name: 'RegisterIndex' }"
+                  class="nav-link active"
+                >
+                  ユーザー登録
+                </router-link>
+              </li>
+            </template>
           </ul>
         </div>
       </div>
@@ -76,10 +105,20 @@ import { mapGetters, mapActions } from "vuex";
 
 export default {
   computed: {
-    ...mapGetters("selectedWordBoxStyle", ["selectedStyle"])
+    ...mapGetters("selectedWordBoxStyle", ["selectedStyle"]),
+    ...mapGetters("users", ["authUser"])
   },
   methods: {
-    ...mapActions("selectedWordBoxStyle", ["styleChange"])
+    ...mapActions("selectedWordBoxStyle", ["styleChange"]),
+    ...mapActions("users", ["logoutUser"]),
+    async handleLogout() {
+      try {
+        await this.logoutUser()
+        this.$router.push({ name: 'TopIndex' })
+      } catch (error) {
+        console.log(error)
+      }
+    }
   }
 }
 </script>
