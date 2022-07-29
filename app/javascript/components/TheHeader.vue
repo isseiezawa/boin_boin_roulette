@@ -32,6 +32,8 @@
               <router-link
                 :to="{ name: 'TopIndex' }"
                 class="nav-link active"
+                exact
+                active-class="fw-bold text-danger"
               >
                 ボインボインルーレット
               </router-link>
@@ -74,6 +76,8 @@
                 <router-link
                   :to="{ name: 'ResultIndex' }"
                   class="nav-link active"
+                  exact
+                  active-class="fw-bold text-danger"
                 >
                   集めた言葉
                 </router-link>
@@ -86,6 +90,8 @@
                 <router-link
                   :to="{ name: 'LoginIndex' }"
                   class="nav-link active"
+                  exact
+                  active-class="fw-bold text-danger"
                 >
                   ログイン
                 </router-link>
@@ -116,6 +122,8 @@
                 <router-link
                   :to="{ name: 'RegisterIndex' }"
                   class="nav-link active"
+                  exact
+                  active-class="fw-bold text-danger"
                 >
                   ユーザー登録
                 </router-link>
