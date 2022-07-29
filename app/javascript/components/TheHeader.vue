@@ -25,7 +25,10 @@
           class="collapse navbar-collapse"
         >
           <ul class="navbar-nav ms-auto">
-            <li class="nav-item" key="boin-boin-roulette">
+            <li
+              key="boin-boin-roulette"
+              class="nav-item"
+            >
               <router-link
                 :to="{ name: 'TopIndex' }"
                 class="nav-link active"
@@ -33,7 +36,10 @@
                 ボインボインルーレット
               </router-link>
             </li>
-            <li class="nav-item" key="mode-select">
+            <li
+              key="mode-select"
+              class="nav-item"
+            >
               <transition
                 name="slide-fade"
                 mode="out-in"
@@ -56,8 +62,15 @@
                 </button>
               </transition>
             </li>
-            <transition name="slide-fade" mode="out-in">
-              <li class="nav-item" key="word-list" v-if="authUser">
+            <transition
+              name="slide-fade"
+              mode="out-in"
+            >
+              <li
+                v-if="authUser"
+                key="word-list"
+                class="nav-item"
+              >
                 <router-link
                   :to="{ name: 'ResultIndex' }"
                   class="nav-link active"
@@ -65,7 +78,11 @@
                   集めた言葉
                 </router-link>
               </li>
-              <li class="nav-item" key="login" v-if="!authUser">
+              <li
+                v-if="!authUser"
+                key="login"
+                class="nav-item"
+              >
                 <router-link
                   :to="{ name: 'LoginIndex' }"
                   class="nav-link active"
@@ -74,8 +91,15 @@
                 </router-link>
               </li>
             </transition>
-            <transition name="slide-fade" mode="out-in">
-              <li class="nav-item" key="logout" v-if="authUser">
+            <transition
+              name="slide-fade"
+              mode="out-in"
+            >
+              <li
+                v-if="authUser"
+                key="logout"
+                class="nav-item"
+              >
                 <router-link
                   to="#"
                   class="nav-link active"
@@ -84,7 +108,11 @@
                   ログアウト
                 </router-link>
               </li>
-              <li class="nav-item" key="register" v-if="!authUser">
+              <li
+                v-if="!authUser"
+                key="register"
+                class="nav-item"
+              >
                 <router-link
                   :to="{ name: 'RegisterIndex' }"
                   class="nav-link active"
