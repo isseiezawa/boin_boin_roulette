@@ -1,6 +1,12 @@
 <template>
   <div id="the-roulette">
-    <div class="container-fluid pt-4 pb-4 mt-5 mb-5 shadow rounded">
+    <div class="mt-4 font-gold">
+      <div>ボインボインルーレット</div>
+      <template>
+        <slot name="sub-title" />
+      </template>
+    </div>
+    <div class="container-fluid pt-2 pb-2 mt-3 mb-3 shadow rounded">
       <div class="box">
         <word-box :selected-words="selectedWords" />
       </div>
@@ -84,6 +90,7 @@ export default {
     };
   },
   computed: {
+    ...mapGetters("users", ["authUser"]),
     ...mapGetters("selectedWords", ["selectedWords"]),
     ...mapGetters("randomPickedUp", ["pickedUpWords"]),
     ...mapGetters("voiceSetting", [
@@ -180,6 +187,16 @@ export default {
 </script>
 
 <style scoped>
+.font-gold {
+	font-size: 8vw;
+	text-align: center;
+	line-height: 0.95em;
+	font-weight: bold;
+	color: transparent;
+	background: repeating-linear-gradient(0deg, #B67B03 0.1em, #DAAF08 0.2em, #FEE9A0 0.3em, #DAAF08 0.4em, #B67B03 0.5em); 
+	background-clip: text;
+  -webkit-background-clip: text;
+}
 .container-fluid {
   background: radial-gradient(#ffffff, #fde9ff);
 }
