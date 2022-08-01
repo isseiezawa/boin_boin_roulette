@@ -65,7 +65,7 @@ export default {
     async login() {
       try {
         await this.loginUser(this.user);
-        this.$router.push({ name: 'ResultIndex' })
+        this.$router.push({ name: 'TopIndex' })
       } catch (error) {
         console.log(error);
       }
