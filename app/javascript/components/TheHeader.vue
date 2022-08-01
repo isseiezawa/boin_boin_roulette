@@ -38,6 +38,16 @@
                 ボインボインルーレット
               </router-link>
             </li>
+            <li>
+              <router-link
+                :to="{ name: 'FreeIndex' }"
+                class="nav-link active"
+                exact
+                active-class="fw-bold text-danger"
+              >
+                フリールーレット
+              </router-link>
+            </li>
             <li
               key="mode-select"
               class="nav-item"
