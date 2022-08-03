@@ -1,12 +1,13 @@
 class Api::SettingsController < ApplicationController
-  def create
-    @setting = current_user.setting.build(setting_params)
+  before_action :set_setting, only: %i[index update]
 
     if @setting.save
       render json: @setting
     else
       render json: @setting.errors, status: :bad_request
     end
+  def index
+    render json: @setting
   end
 
   def update

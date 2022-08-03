@@ -5,6 +5,7 @@ class Api::UsersController < ApplicationController
     user = User.new(user_params)
 
     if user.save
+      user.create_setting
       render json: user
     else
       render json: user.errors, status: :bad_request

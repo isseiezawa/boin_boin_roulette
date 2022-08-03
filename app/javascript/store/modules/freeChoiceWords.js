@@ -1,3 +1,5 @@
+import axios from '../../plugins/axios'
+
 const state = {
   freeWords: []
 }
@@ -7,6 +9,9 @@ const getters = {
 }
 
 const mutations = {
+  setWords(state, words) {
+    if(words) state.freeWords.push(words)
+  },
   changeWords( state, inputWords ) {
     state.freeWords = inputWords.split(/\s/)
     if(!inputWords) state.freeWords = []
@@ -14,6 +19,13 @@ const mutations = {
 }
 
 const actions = {
+  fetchWords({ commit }) {
+    axios.get('settings')
+      .then(res => {
+        commit('setWords', res.data.word)
+      })
+      .catch(err => console.log(err.response))
+  },
   changeWords({ commit }, inputWords) {
     commit('changeWords', inputWords)
   }

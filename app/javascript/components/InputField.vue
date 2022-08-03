@@ -27,10 +27,13 @@ export default {
     ...mapGetters('users', ['authUser']),
     ...mapGetters('freeChoiceWords', ['freeWords'])
   },
+  created() {
+    this.fetchWords()
+  },
   methods: {
     ...mapActions('freeChoiceWords', [
-      'changeWords',
-      'saveWords'
+      'fetchWords',
+      'changeWords'
       ]
     )
   }
