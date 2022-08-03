@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :results, only: %i[index create]
+    resources :settings, only: %i[create update]
     resources :sessions, only: %i[create]
     resources :users do
       collection do
