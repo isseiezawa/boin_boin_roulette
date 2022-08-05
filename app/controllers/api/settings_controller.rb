@@ -1,12 +1,7 @@
 class Api::SettingsController < ApplicationController
-  before_action :set_setting, only: %i[index update]
+  before_action :set_setting, only: %i[show update]
 
-    if @setting.save
-      render json: @setting
-    else
-      render json: @setting.errors, status: :bad_request
-    end
-  def index
+  def show
     render json: @setting
   end
 
@@ -25,6 +20,6 @@ class Api::SettingsController < ApplicationController
   end
 
   def setting_params
-    params.require(:setting).permit(:word)
+    params.require(:setting).permit(word: [])
   end
 end
