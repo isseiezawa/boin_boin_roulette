@@ -13,7 +13,9 @@
       class="form-control mb-3"
       rows="5"
       placeholder="(例)あ い う え お"
+      :value="freeWords.join(' ')"
       @input="changeWords($event.target.value)"
+      @change="saveWords"
     />
     <button v-if="authUser" class="btn btn-light">保存</button>
   </div>
@@ -35,7 +37,15 @@ export default {
       'fetchWords',
       'changeWords'
       ]
-    )
+    ),
+    saveWords() {
+        this.$axios.patch('settings', {
+        word: this.freeWords
+      })
+      .then(res => {
+      console.log(res)
+      })
+    }
   }
 }
 </script>
