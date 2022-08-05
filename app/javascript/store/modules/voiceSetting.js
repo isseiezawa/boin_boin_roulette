@@ -1,3 +1,5 @@
+import axios from '../../plugins/axios'
+
 const state = {
   voiceList: [],
   selectVoice: 49,
@@ -51,6 +53,17 @@ const actions = {
   changePitch({ commit }, selectPitch) {
     commit('changePitch', selectPitch)
   },
+  saveVoiceSetting({ state }) {
+    axios.patch('settings', {
+      voice: state.selectVoice,
+      volume: state.volumeLevel,
+      speed: state.speedSetting,
+      pitch: state.pitchSetting
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
 }
 
 export default {
