@@ -1,7 +1,9 @@
 <template>
   <div id="the-roulette">
-    <div class="mt-4 font-gold">
-      <div>ボインボインルーレット</div>
+    <div class="mt-4">
+      <div class="font-gold">
+        ボインボインルーレット
+      </div>
       <template>
         <slot name="sub-title" />
       </template>
@@ -74,6 +76,16 @@ export default {
     WordBox,
     SelectTheNumberOfPickupsBox,
   },
+  props: {
+    selectedWords: {
+      type: Array,
+      required: true
+    },
+    freeMode: {
+      type: Boolean,
+      required: true
+    }
+  },
   data() {
     return {
       intervId: null,
@@ -91,7 +103,6 @@ export default {
   },
   computed: {
     ...mapGetters("users", ["authUser"]),
-    ...mapGetters("selectedWords", ["selectedWords"]),
     ...mapGetters("randomPickedUp", ["pickedUpWords"]),
     ...mapGetters("voiceSetting", [
       "selectVoice",
@@ -106,7 +117,7 @@ export default {
       const vowels = "あいうえおゐゑ";
       var judgementResult = [];
       for (var i = 0; i < this.pickedUpWords.length; i++) {
-        if (vowels.includes(this.pickedUpWords.join("").charAt(i))) {
+        if (vowels.includes(this.pickedUpWords[i])) {
           judgementResult.push("母音");
         } else {
           judgementResult.push("子音");
@@ -157,7 +168,7 @@ export default {
       this.startOrStop = true;
       this.getVoice();
       try {
-        await this.handleSaveWord(this.pickedUpWords);
+        if(!this.freeMode && this.authUser) await this.handleSaveWord(this.pickedUpWords);
         this.disabledButton = false
       } catch (error) {
         console.log(error)

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import TopIndex from '../pages/top/index'
+import FreeIndex from '../pages/free/index'
 import ResultIndex from '../pages/result/index'
 import RegisterIndex from '../pages/register/index'
 import LoginIndex from '../pages/login/index'
@@ -15,6 +16,11 @@ const router = new Router({
       path: "/",
       component: TopIndex,
       name: "TopIndex"
+    },
+    {
+      path: "/free",
+      component: FreeIndex,
+      name: "FreeIndex"
     },
     {
       path: "/results",
