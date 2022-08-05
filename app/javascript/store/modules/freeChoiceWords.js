@@ -10,7 +10,7 @@ const getters = {
 
 const mutations = {
   setWords(state, words) {
-    if(words) state.freeWords.push(words)
+    if(words)state.freeWords = words
   },
   changeWords( state, inputWords ) {
     state.freeWords = inputWords.split(/\s/)
