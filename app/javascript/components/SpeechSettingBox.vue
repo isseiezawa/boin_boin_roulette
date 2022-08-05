@@ -75,6 +75,17 @@
         @input="changePitch($event.target.value)"
       >
     </div>
+    <div
+      v-if="authUser"
+      class="pb-1"
+    >
+      <button
+        class="btn btn-outline-primary"
+        @click="saveVoiceSetting"
+      >
+        設定の保存
+      </button>
+    </div>
   </div>
 </template>
 
@@ -83,6 +94,7 @@ import { mapGetters, mapActions } from "vuex";
 
 export default {
   computed: {
+    ...mapGetters("users", ["authUser"]),
     ...mapGetters("voiceSetting", [
       "voiceList",
       "selectVoice",
@@ -91,12 +103,17 @@ export default {
       "pitchSetting",
     ]),
   },
+  created() {
+    if(this.authUser)this.setVoiceSetting()
+  },
   methods: {
     ...mapActions("voiceSetting", [
       "changeVoice",
       "changeVolume",
       "changeSpeed",
       "changePitch",
+      "setVoiceSetting",
+      "saveVoiceSetting"
     ]),
   },
 };

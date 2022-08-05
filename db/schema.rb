@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_03_122031) do
+ActiveRecord::Schema.define(version: 2022_08_05_120324) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,10 @@ ActiveRecord::Schema.define(version: 2022_08_03_122031) do
     t.string "word"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "voice", default: 49, null: false
+    t.float "volume", default: 0.5, null: false
+    t.float "speed", default: 0.2, null: false
+    t.float "pitch", default: 0.0, null: false
     t.index ["user_id"], name: "index_settings_on_user_id"
   end
 
