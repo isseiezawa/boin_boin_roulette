@@ -53,6 +53,18 @@ const actions = {
   changePitch({ commit }, selectPitch) {
     commit('changePitch', selectPitch)
   },
+  setVoiceSetting({ commit }){
+    axios.get('settings')
+      .then(res => {
+        commit('changeVoice', res.data.voice);
+        commit('changeVolume', res.data.volume);
+        commit('changeSpeed', res.data.speed);
+        commit('changePitch', res.data.pitch);
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  },
   saveVoiceSetting({ state }) {
     axios.patch('settings', {
       voice: state.selectVoice,

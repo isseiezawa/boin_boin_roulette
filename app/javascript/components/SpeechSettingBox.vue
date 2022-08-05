@@ -75,7 +75,10 @@
         @input="changePitch($event.target.value)"
       >
     </div>
-    <div v-if="authUser" class="pb-1">
+    <div
+      v-if="authUser"
+      class="pb-1"
+    >
       <button
         class="btn btn-outline-primary"
         @click="saveVoiceSetting"
@@ -100,12 +103,16 @@ export default {
       "pitchSetting",
     ]),
   },
+  created() {
+    if(this.authUser)this.setVoiceSetting()
+  },
   methods: {
     ...mapActions("voiceSetting", [
       "changeVoice",
       "changeVolume",
       "changeSpeed",
       "changePitch",
+      "setVoiceSetting",
       "saveVoiceSetting"
     ]),
   },
