@@ -20,6 +20,6 @@ class Api::SettingsController < ApplicationController
   end
 
   def setting_params
-    params.require(:setting).permit(word: [])
+    params.require(:setting).permit(:voice, :volume, :speed, :pitch, word: [])
   end
 end
