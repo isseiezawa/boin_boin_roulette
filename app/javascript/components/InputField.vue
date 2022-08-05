@@ -17,7 +17,13 @@
       @input="changeWords($event.target.value)"
       @change="saveWords"
     />
-    <button v-if="authUser" class="btn btn-light">保存</button>
+    <button
+      v-if="authUser"
+      class="btn btn-light"
+      @click="saveWords"
+    >
+      保存
+    </button>
   </div>
 </template>
 
