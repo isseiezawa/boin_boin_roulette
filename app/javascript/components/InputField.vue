@@ -17,13 +17,6 @@
       @input="changeWords($event.target.value)"
       @change="saveWords"
     />
-    <button
-      v-if="authUser"
-      class="btn btn-light"
-      @click="saveWords"
-    >
-      保存
-    </button>
   </div>
 </template>
 
@@ -36,7 +29,7 @@ export default {
     ...mapGetters('freeChoiceWords', ['freeWords'])
   },
   created() {
-    this.fetchWords()
+    if(this.authUser)this.fetchWords()
   },
   methods: {
     ...mapActions('freeChoiceWords', [
@@ -45,12 +38,14 @@ export default {
       ]
     ),
     saveWords() {
+      if(this.authUser) {
         this.$axios.patch('settings', {
         word: this.freeWords
-      })
-      .then(res => {
-      console.log(res)
-      })
+        })
+        .catch(err => {
+        console.log(err)
+        })
+      }
     }
   }
 }

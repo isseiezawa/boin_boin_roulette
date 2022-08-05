@@ -168,7 +168,7 @@ export default {
       this.startOrStop = true;
       this.getVoice();
       try {
-        if(!this.freeMode) await this.handleSaveWord(this.pickedUpWords);
+        if(!this.freeMode && this.authUser) await this.handleSaveWord(this.pickedUpWords);
         this.disabledButton = false
       } catch (error) {
         console.log(error)
