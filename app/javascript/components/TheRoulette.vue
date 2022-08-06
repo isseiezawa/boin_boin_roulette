@@ -19,9 +19,9 @@
             class="stylish-box"
           >
             <div class="h3">
-              {{ pickedUpWords.join("") }}
+              {{ freeMode ? pickedUpWords.join(" ") : pickedUpWords.join("") }}
             </div>
-            <div class="judge-box">
+            <div class="judge-box" v-if="!freeMode">
               <span
                 v-for="(vowelOrConsonant, index) in vowelOrConsonantJudgement"
                 :key="index"
