@@ -99,7 +99,6 @@ export default {
         { text: "5個", value: 5 },
         { text: "6個", value: 6 },
       ],
-      boinBgm: new Audio(require("../../assets/audios/boin_bgm.mp3"))
     };
   },
   computed: {
@@ -143,6 +142,11 @@ export default {
       "saveWord"
       ]),
     ...mapActions("voiceSetting", ["setVoiceList"]),
+    ...mapActions("bgm", [
+      "playBgm",
+      "slowBgm",
+      "stopBgm"
+    ]),
     startLoop(time) {
       if (!this.intervId) {
         this.intervId = setInterval(
@@ -154,6 +158,7 @@ export default {
           }
         );
         this.startOrStop = false;
+        this.playBgm()
       }
     },
     slowLoop() {
@@ -161,12 +166,14 @@ export default {
       clearInterval(this.intervId);
       this.intervId = null;
       this.startLoop(500);
+      this.slowBgm();
       setTimeout(this.stopLoop, 3.0 * 1000);
     },
     async stopLoop() {
       clearInterval(this.intervId);
       this.intervId = null;
       this.startOrStop = true;
+      this.stopBgm();
       this.getVoice();
       try {
         if(!this.freeMode && this.authUser) await this.handleSaveWord(this.pickedUpWords);
