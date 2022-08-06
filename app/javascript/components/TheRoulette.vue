@@ -99,6 +99,7 @@ export default {
         { text: "5個", value: 5 },
         { text: "6個", value: 6 },
       ],
+      boinBgm: new Audio(require("../../assets/audios/boin_bgm.mp3"))
     };
   },
   computed: {
