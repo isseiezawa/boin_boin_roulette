@@ -19,9 +19,12 @@
             class="stylish-box"
           >
             <div class="h3">
-              {{ pickedUpWords.join("") }}
+              {{ freeMode ? pickedUpWords.join(" ") : pickedUpWords.join("") }}
             </div>
-            <div class="judge-box">
+            <div
+              v-if="!freeMode"
+              class="judge-box"
+            >
               <span
                 v-for="(vowelOrConsonant, index) in vowelOrConsonantJudgement"
                 :key="index"
@@ -142,6 +145,11 @@ export default {
       "saveWord"
       ]),
     ...mapActions("voiceSetting", ["setVoiceList"]),
+    ...mapActions("bgm", [
+      "playBgm",
+      "slowBgm",
+      "stopBgm"
+    ]),
     startLoop(time) {
       if (!this.intervId) {
         this.intervId = setInterval(
@@ -153,6 +161,7 @@ export default {
           }
         );
         this.startOrStop = false;
+        this.playBgm()
       }
     },
     slowLoop() {
@@ -160,12 +169,14 @@ export default {
       clearInterval(this.intervId);
       this.intervId = null;
       this.startLoop(500);
+      this.slowBgm();
       setTimeout(this.stopLoop, 3.0 * 1000);
     },
     async stopLoop() {
       clearInterval(this.intervId);
       this.intervId = null;
       this.startOrStop = true;
+      this.stopBgm();
       this.getVoice();
       try {
         if(!this.freeMode && this.authUser) await this.handleSaveWord(this.pickedUpWords);
