@@ -10,6 +10,7 @@ Rails.application.routes.draw do
         get 'me'
       end
     end
+    resources :performances, only: %i[index create show]
   end
 
   get '*path', to: 'home#index'
