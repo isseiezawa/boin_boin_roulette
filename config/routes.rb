@@ -13,5 +13,8 @@ Rails.application.routes.draw do
     resources :performances, only: %i[index create show]
   end
 
-  get '*path', to: 'home#index'
+  get '*path', to: 'home#index', constraints: lambda { |req|
+    # 'rails/active_storage'が含まれているパスはリダイレクト対象外にする
+    req.path.exclude? 'rails/active_storage'
+  }
 end
