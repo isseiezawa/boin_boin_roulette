@@ -5,6 +5,8 @@ import FreeIndex from '../pages/free/index'
 import ResultIndex from '../pages/result/index'
 import RegisterIndex from '../pages/register/index'
 import LoginIndex from '../pages/login/index'
+import VideosIndex from '../pages/videos/index'
+import PerformanceIndex from '../pages/performance/index'
 import store from '../store'
 
 Vue.use(Router)
@@ -37,6 +39,18 @@ const router = new Router({
       path: '/login',
       component: LoginIndex,
       name: 'LoginIndex'
+    },
+    {
+      path: '/videos',
+      component: VideosIndex,
+      name: 'VideosIndex',
+      meta: { requiredAuth: true }
+    },
+    {
+      path: '/performances',
+      component: PerformanceIndex,
+      name: 'PerformanceIndex',
+      meta: { requiredAuth: true }
     }
   ]
 })
