@@ -7,7 +7,7 @@ class Api::PerformancesController < ApplicationController
   end
 
   def show
-    @performance = Performance.find_by(boin_status: params[:status_id])
+    @performance = Performance.find_by(boin_status: params[:boin_status])
 
     render json: @performance, methods: [:video_url]
   end
