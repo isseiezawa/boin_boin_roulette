@@ -1,9 +1,24 @@
 <template>
-  <div id="performance-index" class="container">
+  <div
+    id="performance-index"
+    class="container"
+  >
     <div class="row row-cols-auto">
-      <div v-for="(performance, index) in performances" :key="index" class="col border">
-        <div class="text-center">{{ performance.title }}({{ performance.boin_status }})</div>
-        <video :src="performance.video_url" width="200vw" autoplay loop muted></video>
+      <div
+        v-for="(performance, index) in performances"
+        :key="index"
+        class="col border"
+      >
+        <div class="text-center">
+          {{ performance.title }}({{ performance.boin_status }})
+        </div>
+        <video
+          :src="performance.video_url"
+          width="200vw"
+          autoplay
+          loop
+          muted
+        />
       </div>
     </div>
   </div>

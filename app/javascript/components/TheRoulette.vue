@@ -64,6 +64,13 @@
             </button>
           </div>
         </transition>
+        <transition name="fade">
+          <video-modal
+            v-if="!freeMode && videoModal"
+            :boin-status="boinStatus"
+            @close-modal="handleCloseModal"
+          />
+        </transition>
       </div>
     </div>
   </div>
@@ -72,12 +79,14 @@
 <script>
 import WordBox from "./WordBox.vue";
 import SelectTheNumberOfPickupsBox from "../components/selectTheNumberOfPickupsBox.vue";
+import VideoModal from "../components/VideoModal.vue"
 import { mapActions, mapGetters } from "vuex";
 
 export default {
   components: {
     WordBox,
     SelectTheNumberOfPickupsBox,
+    VideoModal
   },
   props: {
     selectedWords: {
@@ -102,6 +111,8 @@ export default {
         { text: "5個", value: 5 },
         { text: "6個", value: 6 },
       ],
+      videoModal: false,
+      boinStatus: null
     };
   },
   computed: {
@@ -178,6 +189,7 @@ export default {
       this.startOrStop = true;
       this.stopBgm();
       this.getVoice();
+      this.boinStatusJudge();
       try {
         if(!this.freeMode && this.authUser) await this.handleSaveWord(this.pickedUpWords);
         this.disabledButton = false
@@ -203,7 +215,32 @@ export default {
       } catch (error) {
         console.log(error)
       }
-    }
+    },
+    handleCloseModal() {
+      this.videoModal = false
+      this.boinStatus = null
+    },
+    boinStatusJudge() {      
+      const vowelOrConsonant = this.vowelOrConsonantJudgement.join("")
+      if (vowelOrConsonant == "母音母音") {
+        this.videoModal = true
+        this.boinStatus = 0
+      } else if (vowelOrConsonant == "母音母音母音") {
+        this.videoModal = true
+        this.boinStatus = 1
+      } else if (vowelOrConsonant == "母音母音母音母音") {
+        this.videoModal = true
+        this.boinStatus = 2
+      } else if (vowelOrConsonant == "母音母音母音母音母音") {
+        this.videoModal = true
+        this.boinStatus = 3
+      } else if (vowelOrConsonant == "母音母音母音母音母音母音") {
+        this.videoModal = true
+        this.boinStatus = 4
+      } else {
+        this.boinStatus = null
+      }
+    },
   }
 };
 </script>
