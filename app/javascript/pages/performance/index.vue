@@ -42,7 +42,7 @@
         id="file"
         class="form-control"
         type="file"
-        accept="video/mp4,video/x-m4v"
+        accept="image/gif"
         @change="handleChange"
       >
     </div>

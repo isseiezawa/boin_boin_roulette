@@ -14,11 +14,9 @@
             >
               ×
             </button>
-            <video
+            <img
               :src="videoUrl"
               width="100%"
-              muted
-              autoplay
             />
           </div>
         </div>

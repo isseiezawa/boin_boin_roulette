@@ -12,12 +12,9 @@
         <div class="text-center">
           {{ performance.title }}({{ performance.boin_status }})
         </div>
-        <video
+        <img
           :src="performance.video_url"
           width="200vw"
-          autoplay
-          loop
-          muted
         />
       </div>
     </div>
