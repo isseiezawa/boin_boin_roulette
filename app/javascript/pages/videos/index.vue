@@ -15,7 +15,15 @@
         <img
           :src="performance.video_url"
           width="200vw"
-        />
+        >
+        <div class="text-center">
+          <button
+            class="btn btn-outline-danger"
+            @click="deleteVideo(performance.id, index)"
+          >
+            削除
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -37,6 +45,15 @@ export default {
       this.$axios.get("performances")
         .then(res => {
           this.performances = res.data
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    deleteVideo(videoId, index) {
+      this.$axios.delete(`performances/${videoId}`)
+        .then(res => {
+          this.performances.splice(index, 1)
         })
         .catch(err => {
           console.log(err)

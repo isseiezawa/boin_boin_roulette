@@ -25,6 +25,11 @@ class Api::PerformancesController < ApplicationController
     end
   end
 
+  def destroy
+    @performance = Performance.find(params[:id])
+    @performance.destroy!
+  end
+
   private
 
   def performance_params

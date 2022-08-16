@@ -10,7 +10,8 @@ Rails.application.routes.draw do
         get 'me'
       end
     end
-    resources :performances, only: %i[index create show], param: :boin_status
+    get 'performances/:boin_status', to: 'performances#show'
+    resources :performances, only: %i[index create destroy]
   end
 
   get '*path', to: 'home#index', constraints: lambda { |req|
