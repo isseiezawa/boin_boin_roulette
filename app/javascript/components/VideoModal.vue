@@ -58,6 +58,10 @@ export default {
 .modal {
   display: block;
 }
+.modal-dialog {
+  max-width: none;
+  margin-top: 10vh;
+}
 .modal-content {
   background-color: transparent;
   border: 0;
