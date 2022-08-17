@@ -7,7 +7,7 @@ class Api::PerformancesController < ApplicationController
   end
 
   def show
-    @performance = Performance.find_by(boin_status: params[:boin_status])
+    @performance = Performance.offset(rand(Performance.where(boin_status: params[:boin_status]).count)).first
 
     render json: @performance, methods: [:video_url]
   end
