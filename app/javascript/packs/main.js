@@ -3,6 +3,8 @@ import App from '../app.vue'
 import router from '../router'
 import store from '../store'
 import axios from '../plugins/axios'
+import '../plugins/veevalidate'
+
 import 'bootstrap/dist/css/bootstrap.css'
 // ドロップダウン使用の為追加
 import "bootstrap/dist/js/bootstrap.bundle.min.js"
