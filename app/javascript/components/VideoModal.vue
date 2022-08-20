@@ -1,9 +1,6 @@
 <template>
   <div>
-    <div
-      class="modal"
-      @click.self="$emit('close-modal')"
-    >
+    <div class="modal">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-body">
@@ -14,10 +11,15 @@
             >
               ×
             </button>
-            <img
-              :src="videoUrl"
-              width="100%"
-            >
+            <div class="image-group">
+              <img
+                :src="videoUrl"
+                width="100%"
+              >
+              <div class="inner-title">
+                {{ videoTitle }}
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -34,6 +36,7 @@ export default {
     },
     data() {
       return {
+        videoTitle: "",
         videoUrl: ""
       }
     },
@@ -44,6 +47,7 @@ export default {
       showVideo() {
       this.$axios.get(`performances/${this.boinStatus}`)
         .then(res => {
+          this.videoTitle = res.data.title
           this.videoUrl = res.data.video_url
         })
         .catch(err => {
@@ -68,5 +72,15 @@ export default {
 }
 .modal-header {
   border: none;
+}
+.image-group{
+  position: relative;
+}
+.inner-title {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.1);
+    margin-right: 5px;
+    right: 0;
+    bottom: 0;
 }
 </style>
