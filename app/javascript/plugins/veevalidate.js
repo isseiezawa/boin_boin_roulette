@@ -30,10 +30,26 @@ extend('min', {
   message: '{_field_}は{length}文字以上で入力してください'
 });
 
+extend('max', {
+  validate(value, { length }) {
+    return value.length <= length;
+  },
+  params: ['length'],
+  message: '{_field_}は{length}文字以下で入力してください'
+});
+
 extend('password_confirmed', {
   validate(value, { target }) {
     return value == target;
   },
   params: ['target'],
   message: 'パスワードと一致しません'
+})
+
+extend("gif_image", {
+  validate(value) {
+    let fileName = value[0].name
+    return fileName.toUpperCase().match(/\.(GIF)$/i)
+  },
+  message: 'この画像はGIF画像ではありません'
 })
