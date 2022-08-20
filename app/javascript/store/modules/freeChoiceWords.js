@@ -1,11 +1,22 @@
 import axios from '../../plugins/axios'
 
 const state = {
-  freeWords: []
+  freeWords: [],
+  freeDelectTheNumberOfPickups: []
 }
 
 const getters = {
-  freeWords: state => state.freeWords
+  freeWords: state => state.freeWords,
+  freeSelectTheNumberOfPickups(state) {
+    let arr = []
+    for(let i = 0; i < state.freeWords.length; i++) {
+      let hash = {}
+      hash.text = `${i + 1}個`
+      hash.value = i + 1
+      arr.push(hash)
+    }
+    return arr
+  }
 }
 
 const mutations = {

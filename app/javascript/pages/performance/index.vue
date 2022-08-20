@@ -60,6 +60,7 @@
       <validation-provider
         v-slot="{ errors, validate }"
         ref="provider"
+        name="GIF画像"
         rules="required|gif_image"
       >
         <div class="form-group text-center mt-3">
