@@ -59,9 +59,9 @@
       <!-- eslint-disable vue/no-unused-vars -->
       <validation-provider
         v-slot="{ errors, validate }"
-        ref="provider"
+        ref="video_provider"
         name="GIF画像"
-        rules="required|gif_image"
+        rules="required|image_gif"
       >
         <div class="form-group text-center mt-3">
           <label for="file">GIF画像選択</label>
@@ -84,6 +84,24 @@
           width="100%"
         >
       </div>
+      <validation-provider
+        v-slot="{ errors, validate }"
+        ref="sound_provider"
+        name="音声ファイル"
+        rules="required|audio_mp3"
+      >
+        <div class="form-group text-center mt-3">
+          <label for="file">音声ファイル選択<small>(.mp3)</small></label>
+          <input
+            id="file"
+            class="form-control"
+            type="file"
+            accept="audio/mp3"
+            @change="handleChangeSound"
+          >
+          <span class="text-danger">{{ errors[0] }}</span>
+        </div>
+      </validation-provider>
       <div class="d-grid gap-2 col-6 mt-3 mx-auto">
         <button
           type="submit"
@@ -105,7 +123,8 @@ export default {
       performance: {
         title: "",
         boinStatus: 0,
-        video: ""
+        video: "",
+        sound: ""
       },
       selectBoinStatus: [
         { text: "母音x2", value: 0 },
@@ -120,11 +139,18 @@ export default {
   },
   methods: {
     async handleChange(event) {
-      const { valid } = await this.$refs.provider.validate(event)
+      const { valid } = await this.$refs.video_provider.validate(event)
       if(valid) {
         const file = event.target.files[0]
         this.performance.video = file
         this.previewUrl = URL.createObjectURL(file)
+      }
+    },
+    async handleChangeSound(event) {
+      const { valid } = await this.$refs.sound_provider.validate(event)
+      if(valid) {
+        const file = event.target.files[0]
+        this.performance.sound = file
       }
     },
     handleCreate() {
@@ -132,6 +158,7 @@ export default {
       formData.append("performance[title]", this.performance.title)
       formData.append("performance[boin_status]", this.performance.boinStatus)
       formData.append("performance[video]", this.performance.video)
+      formData.append("performance[sound]", this.performance.sound)
       this.$axios.post("performances", formData)
         .then(res => {
           this.$router.push({ name: "VideosIndex" })

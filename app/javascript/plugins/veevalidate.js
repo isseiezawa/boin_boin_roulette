@@ -46,10 +46,18 @@ extend('password_confirmed', {
   message: 'パスワードと一致しません'
 })
 
-extend("gif_image", {
+extend("image_gif", {
   validate(value) {
     let fileName = value[0].name
     return fileName.toUpperCase().match(/\.(GIF)$/i)
   },
   message: 'この画像はGIF画像ではありません'
+})
+
+extend("audio_mp3", {
+  validate(value) {
+    let fileName = value[0].name
+    return fileName.toUpperCase().match(/\.(MP3)$/i)
+  },
+  message: 'この音声ファイルはmp3ではありません'
 })
