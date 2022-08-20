@@ -3,7 +3,7 @@ class Performance < ApplicationRecord
 
   has_one_attached :video
 
-  validates :title, presence: true
+  validates :title, presence: true, length: {maximum: 255}
 
   enum boin_status: {
     boin_2: 0,
