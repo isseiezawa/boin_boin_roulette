@@ -75,6 +75,15 @@
           <span class="text-danger">{{ errors[0] }}</span>
         </div>
       </validation-provider>
+      <div
+        v-if="previewUrl"
+        class="shadow bg-light mt-2"
+      >
+        <img
+          :src="previewUrl"
+          width="100%"
+        >
+      </div>
       <div class="d-grid gap-2 col-6 mt-3 mx-auto">
         <button
           type="submit"
@@ -105,13 +114,18 @@ export default {
         { text: "母音x5", value: 3 },
         { text: "母音x6", value: 4 },
       ],
+      previewUrl: "",
       errorMessage: []
     }
   },
   methods: {
     async handleChange(event) {
       const { valid } = await this.$refs.provider.validate(event)
-      if(valid) this.performance.video = event.target.files[0]
+      if(valid) {
+        const file = event.target.files[0]
+        this.performance.video = file
+        this.previewUrl = URL.createObjectURL(file)
+      }
     },
     handleCreate() {
       const formData = new FormData()
