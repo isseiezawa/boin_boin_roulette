@@ -3,6 +3,9 @@
     <the-roulette
       :selected-words="defaultWord"
       :free-mode="false"
+      :select-the-number-of-pickups="defaultSelectTheNumberOfPickups"
+      :selected-pickup-number="defaultSelectedPickupNumber"
+      @input="defaultSelectedPickupNumber = $event"
     >
       <template v-slot:sub-title>
         <div
@@ -29,7 +32,15 @@ export default {
   },
   data() {
     return {
-      defaultWord: Array.from('おこそとのほもよろんえけせてねへめえれゑうくすつぬふむゆるをいきしちにひみいりゐあかさたなはまやらわ').reverse()
+      defaultWord: Array.from('おこそとのほもよろんえけせてねへめえれゑうくすつぬふむゆるをいきしちにひみいりゐあかさたなはまやらわ').reverse(),
+      defaultSelectTheNumberOfPickups: [
+        { text: "2個", value: 2 },
+        { text: "3個", value: 3 },
+        { text: "4個", value: 4 },
+        { text: "5個", value: 5 },
+        { text: "6個", value: 6 },
+      ],
+      defaultSelectedPickupNumber: 2
     }
   },
   computed: {

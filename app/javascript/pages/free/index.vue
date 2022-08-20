@@ -3,6 +3,9 @@
     <the-roulette
       :selected-words="freeWords"
       :free-mode="true"
+      :select-the-number-of-pickups="freeSelectTheNumberOfPickups"
+      :selected-pickup-number="freeSelectedPickupNumber"
+      @input="freeSelectedPickupNumber = $event"
     >
       <template v-slot:sub-title>
         <div
@@ -34,8 +37,17 @@ export default {
     SpeechSettingBox,
     InputField
   },
+  data() {
+    return {
+      freeSelectedPickupNumber: 1
+    }
+  },
   computed: {
-    ...mapGetters('freeChoiceWords', ['freeWords'])
+    ...mapGetters('freeChoiceWords', [
+      'freeWords',
+      'freeSelectTheNumberOfPickups'
+      ]
+    )
   }
 }
 </script>

@@ -38,11 +38,11 @@
         <select-the-number-of-pickups-box
           :select-the-number-of-pickups="selectTheNumberOfPickups"
           :selected-pickup-number="selectedPickupNumber"
-          @input="selectedPickupNumber = $event"
+          @input="$emit('input', $event)"
         />
         <button
           class="btn btn-pink-moon"
-          :disabled="disabledButton"
+          :disabled="disabledButton || !selectTheNumberOfPickups.length"
           @click="startOrStop ? startLoop(100) : slowLoop()"
         >
           {{ startOrStopButton }}
@@ -96,6 +96,14 @@ export default {
     freeMode: {
       type: Boolean,
       required: true
+    },
+    selectTheNumberOfPickups: {
+      type: Array,
+      required: true
+    },
+    selectedPickupNumber: {
+      type: Number,
+      required: true
     }
   },
   data() {
@@ -103,14 +111,6 @@ export default {
       intervId: null,
       startOrStop: true,
       disabledButton: false,
-      selectedPickupNumber: 2,
-      selectTheNumberOfPickups: [
-        { text: "2個", value: 2 },
-        { text: "3個", value: 3 },
-        { text: "4個", value: 4 },
-        { text: "5個", value: 5 },
-        { text: "6個", value: 6 },
-      ],
       videoModal: false,
       boinStatus: null
     };
