@@ -17,7 +17,7 @@
                 width="100%"
               >
               <div class="inner-title">
-                {{ videoTitle }}
+                <small>{{ videoTitle }}</small>
               </div>
             </div>
           </div>
