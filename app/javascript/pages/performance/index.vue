@@ -59,6 +59,7 @@
       <!-- eslint-disable vue/no-unused-vars -->
       <validation-provider
         v-slot="{ errors, validate }"
+        name="GIF画像"
         ref="provider"
         rules="required|gif_image"
       >
