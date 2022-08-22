@@ -76,11 +76,11 @@
         </div>
       </validation-provider>
       <div
-        v-if="previewUrl"
+        v-if="previewVideoUrl"
         class="shadow bg-light mt-2"
       >
         <img
-          :src="previewUrl"
+          :src="previewVideoUrl"
           width="100%"
         >
       </div>
@@ -102,6 +102,15 @@
           <span class="text-danger">{{ errors[0] }}</span>
         </div>
       </validation-provider>
+      <div
+        v-if="previewSoundUrl"
+        class="mt-2 text-center"
+      >
+        <audio
+          :src="previewSoundUrl"
+          controls
+        />
+      </div>
       <div class="d-grid gap-2 col-6 mt-3 mx-auto">
         <button
           type="submit"
@@ -133,7 +142,8 @@ export default {
         { text: "母音x5", value: 3 },
         { text: "母音x6", value: 4 },
       ],
-      previewUrl: "",
+      previewVideoUrl: "",
+      previewSoundUrl: "",
       errorMessage: []
     }
   },
@@ -143,7 +153,7 @@ export default {
       if(valid) {
         const file = event.target.files[0]
         this.performance.video = file
-        this.previewUrl = URL.createObjectURL(file)
+        this.previewVideoUrl = URL.createObjectURL(file)
       }
     },
     async handleChangeSound(event) {
@@ -151,6 +161,7 @@ export default {
       if(valid) {
         const file = event.target.files[0]
         this.performance.sound = file
+        this.previewSoundUrl = URL.createObjectURL(file)
       }
     },
     handleCreate() {
