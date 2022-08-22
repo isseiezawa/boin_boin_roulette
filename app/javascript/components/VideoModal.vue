@@ -4,13 +4,6 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-body">
-            <button
-              type="button"
-              class="btn btn-outline-dark"
-              @click="$emit('close-modal')"
-            >
-              ×
-            </button>
             <div class="image-group">
               <img
                 :src="videoUrl"
@@ -19,6 +12,21 @@
               <div class="inner-title">
                 <small>{{ videoTitle }}</small>
               </div>
+            </div>
+            <div class="d-flex justify-content-between">
+              <button
+                type="button"
+                class="btn btn-outline-dark"
+                @click="$emit('close-modal')"
+              >
+                ×
+              </button>
+              <button
+                class="btn btn-outline-light"
+                @click="audioPlay(soundUrl)"
+              >
+                演出音
+              </button>
             </div>
           </div>
         </div>
@@ -30,29 +38,38 @@
 
 <script>
 export default {
-    props: {
-      // eslint-disable-next-line 
-      boinStatus: Number
-    },
-    data() {
-      return {
-        videoTitle: "",
-        videoUrl: ""
-      }
-    },
-    mounted() {
-      this.showVideo()
-    },
-    methods: {
-      showVideo() {
+  props: {
+    // eslint-disable-next-line 
+    boinStatus: Number
+  },
+  data() {
+    return {
+      videoTitle: "",
+      videoUrl: "",
+      soundUrl: ""
+    }
+  },
+  mounted() {
+    this.showVideo()
+  },
+  methods: {
+    showVideo() {
       this.$axios.get(`performances/${this.boinStatus}`)
         .then(res => {
+          console.log(res.data)
           this.videoTitle = res.data.title
           this.videoUrl = res.data.video_url
+          this.soundUrl = res.data.sound_url
+          setTimeout(this.audioPlay, 1000, res.data.sound_url)
         })
         .catch(err => {
           console.log(err)
         })
+    },
+    audioPlay(url) {
+      const audio = new Audio(url)
+      audio.volume = 0.5
+      audio.play()
     }
   }
 }
