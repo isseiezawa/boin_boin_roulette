@@ -3,13 +3,13 @@ class Api::PerformancesController < ApplicationController
 
   def index
     @performances = Performance.all.includes(:user)
-    render json: @performances, methods: [:video_url]
+    render json: @performances, methods: %i[video_url sound_url]
   end
 
   def show
-    @performance = Performance.offset(rand(Performance.where(boin_status: params[:boin_status]).count)).first
+    @performance = Performance.where(boin_status: params[:boin_status]).offset(rand(Performance.where(boin_status: params[:boin_status]).count)).first
 
-    render json: @performance, methods: [:video_url]
+    render json: @performance, methods: %i[video_url sound_url]
   end
 
   def create
@@ -17,9 +17,10 @@ class Api::PerformancesController < ApplicationController
     @performance.title = performance_params[:title]
     @performance.boin_status = performance_params[:boin_status].to_i
     @performance.video = performance_params[:video]
+    @performance.sound = performance_params[:sound]
 
     if @performance.save
-      render json: @performance, methods: [:video_url]
+      render json: @performance, methods: %i[video_url sound_url]
     else
       render json: @performance.errors, status: :bad_request
     end
@@ -33,6 +34,6 @@ class Api::PerformancesController < ApplicationController
   private
 
   def performance_params
-    params.require(:performance).permit(:title, :boin_status, :video)
+    params.require(:performance).permit(:title, :boin_status, :video, :sound)
   end
 end

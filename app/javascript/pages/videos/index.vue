@@ -18,6 +18,12 @@
         >
         <div class="text-center">
           <button
+            class="btn btn-outline-success"
+            @click="audioPlay(performance.sound_url)"
+          >
+            音声再生
+          </button>
+          <button
             class="btn btn-outline-danger"
             @click="deleteVideo(performance.id, index)"
           >
@@ -49,6 +55,11 @@ export default {
         .catch(err => {
           console.log(err)
         })
+    },
+    audioPlay(audio_url) {
+      const audio = new Audio(audio_url)
+      audio.volume = 0.5
+      audio.play()
     },
     deleteVideo(videoId, index) {
       this.$axios.delete(`performances/${videoId}`)

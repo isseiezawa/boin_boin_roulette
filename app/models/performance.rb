@@ -2,6 +2,7 @@ class Performance < ApplicationRecord
   belongs_to :user
 
   has_one_attached :video
+  has_one_attached :sound
 
   validates :title, presence: true, length: {maximum: 255}
 
@@ -15,5 +16,9 @@ class Performance < ApplicationRecord
 
   def video_url
     video.attached? ? Rails.application.routes.url_helpers.rails_blob_path(video, only_path: true) : nil
+  end
+
+  def sound_url
+    sound.attached? ? Rails.application.routes.url_helpers.rails_blob_path(sound, only_path: true) : nil
   end
 end
