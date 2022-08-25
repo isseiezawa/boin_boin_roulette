@@ -35,7 +35,12 @@
               <font-awesome-icon :icon="['fas', 'user']" /> ユーザー名
             </label>
           </div>
-          <span class="text-danger">{{ errors[0] }}</span>
+          <transition name="fade">
+            <span
+              v-if="errors[0]"
+              class="text-danger"
+            >{{ errors[0] }}</span>
+          </transition>
         </validation-provider>
         <validation-provider
           v-slot="{ errors }"
@@ -54,7 +59,12 @@
               <font-awesome-icon :icon="['fas', 'at']" /> メールアドレス
             </label>
           </div>
-          <span class="text-danger">{{ errors[0] }}</span>
+          <transition name="fade">
+            <span
+              v-if="errors[0]"
+              class="text-danger"
+            >{{ errors[0] }}</span>
+          </transition>
         </validation-provider>
         <validation-provider
           v-slot="{ errors }"
@@ -74,7 +84,12 @@
               <font-awesome-icon :icon="['fas', 'key']" /> パスワード
             </label>
           </div>
-          <span class="text-danger">{{ errors[0] }}</span>
+          <transition name="fade">
+            <span
+              v-if="errors[0]"
+              class="text-danger"
+            >{{ errors[0] }}</span>
+          </transition>
         </validation-provider>
         <validation-provider
           v-slot="{ errors }"
@@ -93,7 +108,12 @@
               <font-awesome-icon :icon="['fas', 'key']" /> パスワード(確認)
             </label>
           </div>
-          <span class="text-danger">{{ errors[0] }}</span>
+          <transition name="fade">
+            <span
+              v-if="errors[0]"
+              class="text-danger"
+            >{{ errors[0] }}</span>
+          </transition>
         </validation-provider>
       </div>
       <div class="d-grid gap-2 col-6 mt-3 mx-auto">
@@ -137,3 +157,18 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.fade-enter-active {
+  transition: all 2s;
+}
+.fade-leave-active {
+  transition: all 1s;
+}
+.fade-enter {
+  opacity: 0;
+}
+.fade-leave-to {
+  opacity: 0;
+}
+</style>
