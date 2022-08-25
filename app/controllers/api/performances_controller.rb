@@ -1,5 +1,5 @@
 class Api::PerformancesController < ApplicationController
-  before_action :authenticate!
+  before_action :authenticate!, only: %i[index create destroy]
 
   def index
     @performances = Performance.all.includes(:user)
