@@ -52,9 +52,9 @@
             v-if="pickedUpWords"
             class="mt-2"
           >
-            <p v-if=" isSmartPhone">
-              <span class="text-danger text-decoration-underline fst-italic">※スマートフォンの場合、一度読み上げボタンを押すと読み上げるようになります。</span>
-            </p>
+            <div v-if="isSmartPhone">
+              <span class="small text-danger text-decoration-underline fst-italic">※iPhone/iPad/Androidの場合一度読み上げボタンを押すと読み上げるようになります。</span>
+            </div>
             <button
               :disabled="!startOrStop"
               class="btn btn-neumorphism"
@@ -74,7 +74,7 @@
         </transition>
       </div>
       <div
-        v-if="!freeMode"
+        v-if="!freeMode && isSmartPhone"
         class="position-absolute bottom-0 end-0"
       >
         <div class="small">
@@ -160,7 +160,7 @@ export default {
       return judgementResult;
     },
     isSmartPhone() {
-      if(navigator.userAgent.match(/iPhone|Android.+Mobile/)) {
+      if(navigator.userAgent.match(/iPhone|iPad|Android.+Mobile/)) {
         return true;
       } else {
         return false;
