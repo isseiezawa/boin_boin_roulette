@@ -13,17 +13,18 @@
                 <small>{{ videoTitle }}</small>
               </div>
             </div>
-            <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-between mt-5">
               <button
                 type="button"
-                class="btn btn-outline-dark"
+                class="btn btn-outline-secondary"
                 @click="$emit('close-modal')"
               >
                 ×
               </button>
               <button
-                class="btn btn-outline-light"
+                class="btn btn-outline-secondary"
                 @click="audioPlay(soundUrl)"
+                @click.once="$emit('push-allow', true)"
               >
                 演出音
               </button>
@@ -37,41 +38,45 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 export default {
   props: {
     // eslint-disable-next-line 
     boinStatus: Number
   },
-  data() {
-    return {
-      videoTitle: "",
-      videoUrl: "",
-      soundUrl: ""
-    }
+  computed: {
+    ...mapGetters('performance', [
+      'videoTitle',
+      'videoUrl',
+      'soundUrl',
+      'audioInstance'
+    ])
   },
   mounted() {
-    this.showVideo()
+    this.showVideoAndSound()
   },
   methods: {
-    showVideo() {
-      this.$axios.get(`performances/${this.boinStatus}`)
-        .then(res => {
-          console.log(res.data)
-          this.videoTitle = res.data.title
-          this.videoUrl = res.data.video_url
-          this.soundUrl = res.data.sound_url
-          setTimeout(this.audioPlay, 1000, res.data.sound_url)
-        })
-        .catch(err => {
-          console.log(err)
-        })
+    ...mapActions('performance', [
+      'fetchPerformance',
+      'createAudioInstance'
+      ]),
+    async showVideoAndSound() {
+      try {
+        await this.fetchPerformance(this.boinStatus)
+        setTimeout(this.audioPlay, 2000, this.soundUrl)
+      } catch( error ) {
+        console.log(error)
+      }
     },
-    audioPlay(url) {
-      const audio = new Audio(url)
-      audio.volume = 0.5
-      audio.play()
+    async audioPlay() {
+      if(!this.audioInstance) {
+        await this.createAudioInstance()
+      }
+      this.audioInstance.src = this.soundUrl
+      this.audioInstance.volume = 0.5
+      this.audioInstance.play()
     }
-  }
+  },
 }
 </script>
 

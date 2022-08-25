@@ -5,6 +5,7 @@ import freeChoiceWords from './modules/freeChoiceWords'
 import randomPickedUp from './modules/randomPickedUp'
 import voiceSetting from './modules/voiceSetting'
 import selectedWordBoxStyle from './modules/selectedWordBoxStyle'
+import performance from './modules/performance'
 import bgm from './modules/bgm'
 
 Vue.use(Vuex)
@@ -16,6 +17,7 @@ export default new Vuex.Store({
     randomPickedUp,
     voiceSetting,
     selectedWordBoxStyle,
+    performance,
     bgm
   }
 })

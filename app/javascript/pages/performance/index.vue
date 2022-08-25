@@ -35,9 +35,11 @@
               <font-awesome-icon :icon="['fas', 'at']" /> タイトル
             </label>
           </div>
-          <div class="text-center">
-            <span class="text-danger">{{ errors[0] }}</span>
-          </div>
+          <transition name="fade">
+            <div v-if="errors[0]" class="text-center">
+              <span class="text-danger">{{ errors[0] }}</span>
+            </div>
+          </transition>
         </validation-provider>
         <div class="form-group text-center mt-3">
           <label for="boin-status">母音の数</label>
@@ -72,7 +74,9 @@
             accept="image/gif"
             @change="handleChange"
           >
-          <span class="text-danger">{{ errors[0] }}</span>
+          <transition name="fade">
+            <span v-if="errors[0]" class="text-danger">{{ errors[0] }}</span>
+          </transition>
         </div>
       </validation-provider>
       <div
@@ -99,7 +103,9 @@
             accept="audio/mp3"
             @change="handleChangeSound"
           >
-          <span class="text-danger">{{ errors[0] }}</span>
+          <transition name="fade">
+            <span v-if="errors[0]" class="text-danger">{{ errors[0] }}</span>
+          </transition>
         </div>
       </validation-provider>
       <div
@@ -182,3 +188,18 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.fade-enter-active {
+  transition: all 2s;
+}
+.fade-leave-active {
+  transition: all 1s;
+}
+.fade-enter {
+  opacity: 0;
+}
+.fade-leave-to {
+  opacity: 0;
+}
+</style>

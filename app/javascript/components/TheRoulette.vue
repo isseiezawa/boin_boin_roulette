@@ -8,7 +8,7 @@
         <slot name="sub-title" />
       </template>
     </div>
-    <div class="container-fluid pt-2 pb-2 mt-3 mb-3 shadow rounded">
+    <div class="container-fluid pt-2 pb-2 mt-3 mb-3 shadow rounded position-relative">
       <div class="box">
         <word-box :selected-words="selectedWords" />
       </div>
@@ -52,9 +52,9 @@
             v-if="pickedUpWords"
             class="mt-2"
           >
-            <p v-if=" isSmartPhone">
-              <span class="text-danger text-decoration-underline fst-italic">※スマートフォンの場合、一度読み上げボタンを押すと読み上げるようになります。</span>
-            </p>
+            <div v-if="isSmartPhone">
+              <span class="small text-danger text-decoration-underline fst-italic">※iPhone/iPad/Androidの場合一度読み上げボタンを押すと読み上げるようになります。</span>
+            </div>
             <button
               :disabled="!startOrStop"
               class="btn btn-neumorphism"
@@ -69,8 +69,26 @@
             v-if="!freeMode && videoModal"
             :boin-status="boinStatus"
             @close-modal="handleCloseModal"
+            @push-allow="checkAllow = $event"
           />
         </transition>
+      </div>
+      <div
+        v-if="!freeMode && isSmartPhone"
+        class="position-absolute bottom-0 end-0"
+      >
+        <div class="small">
+          演出時音声
+        </div>
+        <div class="form-check form-switch">
+          <input
+            class="form-check-input sound-check"
+            type="checkbox"
+            :disabled="checkAllow && audioInstance != ''"
+            :checked="checkAllow"
+            @change.once="newAudioInstance"
+          >
+        </div>
       </div>
     </div>
   </div>
@@ -112,12 +130,14 @@ export default {
       startOrStop: true,
       disabledButton: false,
       videoModal: false,
-      boinStatus: null
+      boinStatus: null,
+      checkAllow: false
     };
   },
   computed: {
     ...mapGetters("users", ["authUser"]),
     ...mapGetters("randomPickedUp", ["pickedUpWords"]),
+    ...mapGetters("performance", ["audioInstance"]),
     ...mapGetters("voiceSetting", [
       "selectVoice",
       "volumeLevel",
@@ -140,7 +160,7 @@ export default {
       return judgementResult;
     },
     isSmartPhone() {
-      if(navigator.userAgent.match(/iPhone|Android.+Mobile/)) {
+      if(navigator.userAgent.match(/iPhone|iPad|Android.+Mobile/)) {
         return true;
       } else {
         return false;
@@ -156,6 +176,7 @@ export default {
       "saveWord"
       ]),
     ...mapActions("voiceSetting", ["setVoiceList"]),
+    ...mapActions("performance", ["createAudioInstance"]),
     ...mapActions("bgm", [
       "playBgm",
       "slowBgm",
@@ -241,6 +262,10 @@ export default {
         this.boinStatus = null
       }
     },
+    newAudioInstance() {
+      this.checkAllow = true
+      this.createAudioInstance()
+    }
   }
 };
 </script>
@@ -297,6 +322,9 @@ export default {
   background: #EBECF0;
   box-shadow: inset 5px 5px 20px #c8c9cc, 
               inset -5px -5px 20px #ffffff;
+}
+.sound-check {
+  width: 10vh !important;
 }
 .fade-enter-active,
 .fade-leave-active {
