@@ -13,16 +13,16 @@
                 <small>{{ videoTitle }}</small>
               </div>
             </div>
-            <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-between mt-5">
               <button
                 type="button"
-                class="btn btn-outline-dark"
+                class="btn btn-outline-secondary"
                 @click="$emit('close-modal')"
               >
                 ×
               </button>
               <button
-                class="btn btn-outline-light"
+                class="btn btn-outline-secondary"
                 @click="audioPlay(soundUrl)"
                 @click.once="$emit('push-allow', true)"
               >
