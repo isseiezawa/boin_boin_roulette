@@ -63,7 +63,7 @@ export default {
     async showVideoAndSound() {
       try {
         await this.fetchPerformance(this.boinStatus)
-        setTimeout(this.audioPlay, 2000, this.soundUrl)
+        this.audioPlay()
       } catch( error ) {
         console.log(error)
       }

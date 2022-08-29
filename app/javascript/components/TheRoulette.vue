@@ -160,7 +160,7 @@ export default {
       return judgementResult;
     },
     isSmartPhone() {
-      if(navigator.userAgent.match(/iPhone|iPad|Android.+Mobile/)) {
+      if(navigator.userAgent.toLowerCase().match(/iphone|ipad|android|macintosh/) && 'ontouchend' in document) {
         return true;
       } else {
         return false;
