@@ -12,27 +12,37 @@
       </div>
       <div class="row flex-row flex-nowrap overflow-auto mb-3">
         <div class="col-4 shadow-sm rounded bg-light pt-2 pb-3">
-          <div class="text-info">母音×2</div>
+          <div class="text-info">
+            母音×2
+          </div>
           <div><b>{{ maxBoinCount('boin_2') }}</b></div>
           <div>MAXボイン出現率<br>({{ Math.floor(maxBoinCount('boin_2') / resultWords.length * 100000) / 1000 + '%' }})</div>
         </div>
         <div class="col-4 shadow-sm rounded bg-light pt-2 pb-3">
-          <div class="text-info">母音×3</div>
+          <div class="text-info">
+            母音×3
+          </div>
           <div><b>{{ maxBoinCount('boin_3') }}</b></div>
           <div>MAXボイン出現率<br>({{ Math.floor(maxBoinCount('boin_3') / resultWords.length * 100000) / 1000 + '%' }})</div>
         </div>
         <div class="col-4 shadow-sm rounded bg-light pt-2 pb-3">
-          <div class="text-info">母音x4</div>
+          <div class="text-info">
+            母音x4
+          </div>
           <div><b>{{ maxBoinCount('boin_4') }}</b></div>
           <div>MAXボイン出現率<br>({{ Math.floor(maxBoinCount('boin_4') / resultWords.length * 100000) / 1000 + '%' }})</div>
         </div>
         <div class="col-4 shadow-sm rounded bg-light pt-2 pb-3">
-          <div class="text-info">母音x5</div>
+          <div class="text-info">
+            母音x5
+          </div>
           <div><b>{{ maxBoinCount('boin_5') }}</b></div>
           <div>MAXボイン出現率<br>({{ Math.floor(maxBoinCount('boin_5') / resultWords.length * 100000) / 1000 + '%' }})</div>
         </div>
         <div class="col-4 shadow-sm rounded bg-light pt-2 pb-3">
-          <div class="text-info">母音x6</div>
+          <div class="text-info">
+            母音x6
+          </div>
           <div><b>{{ maxBoinCount('boin_6') }}</b></div>
           <div>MAXボイン出現率<br>({{ Math.floor(maxBoinCount('boin_6') / resultWords.length * 100000) / 1000 + '%' }})</div>
         </div>
