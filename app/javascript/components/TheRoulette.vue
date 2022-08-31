@@ -210,9 +210,9 @@ export default {
       this.startOrStop = true;
       this.stopBgm();
       this.getVoice();
-      this.boinStatusJudge();
+      await this.boinStatusJudge();
       try {
-        if(!this.freeMode && this.authUser) await this.handleSaveWord(this.pickedUpWords);
+        if(!this.freeMode && this.authUser) await this.handleSaveWord(this.boinStatus);
         this.disabledButton = false
       } catch (error) {
         console.log(error)
