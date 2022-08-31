@@ -14,9 +14,12 @@
         >
           プライバシーポリシー
         </button>
+        <button
+          class="btn text-white"
+          @click="changeContactUsModal"
         >
           お問合せ
-        </router-link>
+        </button>
       </div>
       <p class="text-center mt-3 font-italic text-white">
         <small>Copyright © 2022 issei(e) All Rights Reserved.</small>
@@ -46,16 +49,19 @@
 <script>
 import ThePrivacyPolicyModal from './ThePrivacyPolicyModal.vue'
 import TheTermsOfUseModal from './TheTermsOfUseModal.vue'
+import TheContactUsModal from './TheContactUsModal.vue'
 
 export default {
   components: {
     ThePrivacyPolicyModal,
     TheTermsOfUseModal,
+    TheContactUsModal
   },
   data() {
     return {
       privacyPolicyModal: false,
       TermsOfUseModal: false,
+      ContactUsModal: false
     }
   },
   methods: {
@@ -65,6 +71,9 @@ export default {
     changeTermsOfUseModal() {
       this.TermsOfUseModal = !this.TermsOfUseModal
     },
+    changeContactUsModal() {
+      this.ContactUsModal = !this.ContactUsModal
+    }
   }
 }
 </script>

@@ -36,7 +36,10 @@
             </label>
           </div>
           <transition name="fade">
-            <div v-if="errors[0]" class="text-center">
+            <div
+              v-if="errors[0]"
+              class="text-center"
+            >
               <span class="text-danger">{{ errors[0] }}</span>
             </div>
           </transition>
@@ -75,7 +78,10 @@
             @change="handleChange"
           >
           <transition name="fade">
-            <span v-if="errors[0]" class="text-danger">{{ errors[0] }}</span>
+            <span
+              v-if="errors[0]"
+              class="text-danger"
+            >{{ errors[0] }}</span>
           </transition>
         </div>
       </validation-provider>
@@ -104,7 +110,10 @@
             @change="handleChangeSound"
           >
           <transition name="fade">
-            <span v-if="errors[0]" class="text-danger">{{ errors[0] }}</span>
+            <span
+              v-if="errors[0]"
+              class="text-danger"
+            >{{ errors[0] }}</span>
           </transition>
         </div>
       </validation-provider>
