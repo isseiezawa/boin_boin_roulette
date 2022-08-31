@@ -58,9 +58,10 @@ const actions = {
       })
       .catch(err => console.log(err.response))
   },
-  saveWord({ commit }, word) {
+  saveWord({ commit, state }, max_boin) {
     return axios.post('results', {
-      word: word.join('')
+      word: state.pickedUpWords.join(''),
+      max_boin: max_boin
     })
     .then(res => {
       commit('saveWord', res.data)

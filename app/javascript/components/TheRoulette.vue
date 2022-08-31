@@ -77,7 +77,7 @@
         v-if="!freeMode && isSmartPhone"
         class="position-absolute bottom-0 end-0"
       >
-        <div class="small">
+        <div class="small arrow-box shadow">
           演出時音声
         </div>
         <div class="form-check form-switch">
@@ -210,9 +210,9 @@ export default {
       this.startOrStop = true;
       this.stopBgm();
       this.getVoice();
-      this.boinStatusJudge();
+      await this.boinStatusJudge();
       try {
-        if(!this.freeMode && this.authUser) await this.handleSaveWord(this.pickedUpWords);
+        if(!this.freeMode && this.authUser) await this.handleSaveWord(this.boinStatus);
         this.disabledButton = false
       } catch (error) {
         console.log(error)
@@ -325,6 +325,36 @@ export default {
 }
 .sound-check {
   width: 10vh !important;
+}
+.arrow-box {
+	position: relative;
+	background: #93e8f5;
+  border-radius: 20%;
+  margin-left: .5rem;
+  margin-right: .5rem;
+}
+.arrow-box:after, .arrow-box:before {
+	top: 100%;
+	left: 50%;
+	border: solid transparent;
+	content: "";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.arrow-box:after {
+	border-color: rgba(100, 198, 213, 0);
+	border-top-color: #93e8f5;
+	border-width: 3px;
+	margin-left: -3px;
+}
+.arrow-box:before {
+	border-color: rgba(137, 245, 227, 0);
+	border-top-color: #93e8f5;
+	border-width: 3px;
+	margin-left: -3px;
 }
 .fade-enter-active,
 .fade-leave-active {
