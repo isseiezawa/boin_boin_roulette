@@ -17,6 +17,6 @@ class Api::ResultsController < ApplicationController
   private
 
   def result_params
-    params.require(:result).permit(:word)
+    params.require(:result).permit(:word, :max_boin)
   end
 end
