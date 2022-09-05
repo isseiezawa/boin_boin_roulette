@@ -139,17 +139,43 @@
                 </router-link>
               </li>
             </transition>
+            <li
+              key="the-description"
+              class="nav-item"
+            >
+              <button
+                class="btn btn-default navbar-btn nav-link active"
+                @click="changeDescriptionModal"
+              >
+                <font-awesome-icon class="text-info" :icon="['fas', 'circle-question']" />使い方
+              </button>
+            </li>
           </ul>
         </div>
       </div>
+      <transition name="bounce">
+        <the-description-modal
+          v-if="descriptionModal"
+          @close-description-modal="changeDescriptionModal"
+        />
+      </transition>
     </nav>
   </header>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import TheDescriptionModal from "./TheDescriptionModal.vue"
 
 export default {
+  components: {
+    TheDescriptionModal
+  },
+  data() {
+    return {
+      descriptionModal: false
+    }
+  },
   computed: {
     ...mapGetters("selectedWordBoxStyle", ["selectedStyle"]),
     ...mapGetters("users", ["authUser"])
@@ -164,6 +190,9 @@ export default {
       } catch (error) {
         console.log(error)
       }
+    },
+    changeDescriptionModal() {
+      this.descriptionModal = !this.descriptionModal
     }
   }
 }
@@ -183,5 +212,22 @@ export default {
 .slide-fade-leave-to {
   transform: translateX(10px);
   opacity: 0;
+}
+.bounce-enter-active {
+  animation: bounce-in .5s;
+}
+.bounce-leave-active {
+  animation: bounce-in .5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 </style>
