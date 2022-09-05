@@ -52,7 +52,7 @@ const actions = {
     }
   },
   fetchResultWords({ commit }) {
-    axios.get('results')
+    return axios.get('results')
       .then(res => {
         commit('fetchResultWords', res.data)
       })
