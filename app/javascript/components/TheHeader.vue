@@ -147,7 +147,10 @@
                 class="btn btn-default navbar-btn nav-link active"
                 @click="changeDescriptionModal"
               >
-                <font-awesome-icon class="text-info" :icon="['fas', 'circle-question']" />使い方
+                <font-awesome-icon
+                  class="text-info"
+                  :icon="['fas', 'circle-question']"
+                />使い方
               </button>
             </li>
           </ul>
