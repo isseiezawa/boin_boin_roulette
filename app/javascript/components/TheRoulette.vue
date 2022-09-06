@@ -18,8 +18,19 @@
             v-if="pickedUpWords"
             class="stylish-box"
           >
-            <div class="h3">
-              {{ freeMode ? pickedUpWords.join(" ") : pickedUpWords.join("") }}
+            <div
+              class="h3"
+              :class="fontRainbow ? 'rainbow fw-bold fs-1' : ''"
+            >
+              <span
+                v-if="fontRainbow"
+                class="rainbow-flash rainbow fs-4"
+              >MAXボイン</span>
+              <span>{{ freeMode ? pickedUpWords.join(" ") : pickedUpWords.join("") }}</span>
+              <span
+                v-if="fontRainbow"
+                class="rainbow-flash rainbow fs-4"
+              >ボインMAX</span>
             </div>
             <div
               v-if="!freeMode"
@@ -131,7 +142,8 @@ export default {
       disabledButton: false,
       videoModal: false,
       boinStatus: null,
-      checkAllow: false
+      checkAllow: false,
+      fontRainbow: false
     };
   },
   computed: {
@@ -193,6 +205,7 @@ export default {
           }
         );
         this.startOrStop = false;
+        this.fontRainbow = false;
         this.playBgm()
       }
     },
@@ -245,18 +258,23 @@ export default {
       const vowelOrConsonant = this.vowelOrConsonantJudgement.join("")
       if (vowelOrConsonant == "母音母音") {
         this.videoModal = true
+        this.fontRainbow = true
         this.boinStatus = 0
       } else if (vowelOrConsonant == "母音母音母音") {
         this.videoModal = true
+        this.fontRainbow = true
         this.boinStatus = 1
       } else if (vowelOrConsonant == "母音母音母音母音") {
         this.videoModal = true
+        this.fontRainbow = true
         this.boinStatus = 2
       } else if (vowelOrConsonant == "母音母音母音母音母音") {
         this.videoModal = true
+        this.fontRainbow = true
         this.boinStatus = 3
       } else if (vowelOrConsonant == "母音母音母音母音母音母音") {
         this.videoModal = true
+        this.fontRainbow = true
         this.boinStatus = 4
       } else {
         this.boinStatus = null
@@ -295,6 +313,27 @@ export default {
 }
 .judge-box {
   height: 2rem;
+}
+.rainbow-flash{
+  animation: flash 0.3s linear infinite;
+}
+@keyframes flash {
+  0%,100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+.rainbow {
+	background: linear-gradient(to right, orange , rgb(223, 223, 0), rgb(0, 211, 0), cyan, blue, violet);
+	background: -webkit-linear-gradient(left, orange , rgb(223, 223, 0), rgb(0, 211, 0), cyan, blue, violet);
+	background: -o-linear-gradient(right, orange , rgb(223, 223, 0), rgb(0, 211, 0), cyan, blue, violet);
+	background: -moz-linear-gradient(right, orange , rgb(223, 223, 0), rgb(0, 211, 0), cyan, blue, violet);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+  display: inline-block;
 }
 .btn-pink-moon {
   background: #ff8ad0;
@@ -343,7 +382,6 @@ export default {
 	position: absolute;
 	pointer-events: none;
 }
-
 .arrow-box:after {
 	border-color: rgba(100, 198, 213, 0);
 	border-top-color: #93e8f5;
