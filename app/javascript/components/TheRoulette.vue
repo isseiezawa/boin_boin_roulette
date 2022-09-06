@@ -24,13 +24,13 @@
             >
               <span
                 v-if="fontRainbow"
-                class="rainbow-flash rainbow fs-4"
-              >MAXボイン</span>
+                class="rainbow-flash rainbow fs-3"
+              >MAX</span>
               <span>{{ freeMode ? pickedUpWords.join(" ") : pickedUpWords.join("") }}</span>
               <span
                 v-if="fontRainbow"
-                class="rainbow-flash rainbow fs-4"
-              >ボインMAX</span>
+                class="rainbow-flash rainbow fs-3"
+              >MAX</span>
             </div>
             <div
               v-if="!freeMode"
