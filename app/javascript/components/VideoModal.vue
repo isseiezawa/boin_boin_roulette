@@ -17,7 +17,7 @@
               <button
                 type="button"
                 class="btn btn-outline-dark"
-                @click="$emit('close-modal')"
+                @click="closeModalAndStopLoop"
               >
                 ×
               </button>
@@ -75,6 +75,11 @@ export default {
       this.audioInstance.src = this.soundUrl
       this.audioInstance.volume = 0.5
       this.audioInstance.play()
+      this.audioInstance.loop = true
+    },
+    closeModalAndStopLoop() {
+      this.audioInstance.loop = false
+      this.$emit('close-modal')
     }
   },
 }
