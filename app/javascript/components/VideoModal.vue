@@ -16,13 +16,13 @@
             <div class="d-flex justify-content-between mt-5">
               <button
                 type="button"
-                class="btn btn-outline-secondary"
-                @click="$emit('close-modal')"
+                class="btn btn-outline-dark"
+                @click="closeModalAndStopLoop"
               >
                 ×
               </button>
               <button
-                class="btn btn-outline-secondary"
+                class="btn btn-outline-dark"
                 @click="audioPlay(soundUrl)"
                 @click.once="$emit('push-allow', true)"
               >
@@ -75,6 +75,11 @@ export default {
       this.audioInstance.src = this.soundUrl
       this.audioInstance.volume = 0.5
       this.audioInstance.play()
+      this.audioInstance.loop = true
+    },
+    closeModalAndStopLoop() {
+      this.audioInstance.loop = false
+      this.$emit('close-modal')
     }
   },
 }

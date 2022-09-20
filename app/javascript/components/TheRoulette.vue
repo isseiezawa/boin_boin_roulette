@@ -64,7 +64,7 @@
             class="mt-2"
           >
             <div v-if="isSmartPhone">
-              <span class="small text-danger text-decoration-underline fst-italic">※iPhone/iPad/Androidの場合一度読み上げボタンを押すと読み上げるようになります。</span>
+              <span class="small text-danger text-decoration-underline fst-italic">※iPhone/iPad/Androidの場合一度読み上げボタンを押すと読み上げるようになります。<br>マナーボタンがONだと再生されません。</span>
             </div>
             <button
               :disabled="!startOrStop"
