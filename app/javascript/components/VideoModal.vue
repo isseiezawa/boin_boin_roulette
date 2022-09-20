@@ -16,13 +16,13 @@
             <div class="d-flex justify-content-between mt-5">
               <button
                 type="button"
-                class="btn btn-outline-secondary"
+                class="btn btn-outline-dark"
                 @click="$emit('close-modal')"
               >
                 ×
               </button>
               <button
-                class="btn btn-outline-secondary"
+                class="btn btn-outline-dark"
                 @click="audioPlay(soundUrl)"
                 @click.once="$emit('push-allow', true)"
               >
