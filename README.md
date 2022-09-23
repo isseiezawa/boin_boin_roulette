@@ -1,24 +1,35 @@
-# README
+# ボインボインルーレット
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+![image](https://gyazo.com/de91928a8590018034ea04807d9d254f)
 
-Things you may want to cover:
+## ●サービス概要
+- 母音を連ねてボインボインを目指そう!
+- 自分でルーレットを作って回そう！
 
-* Ruby version
+## ●メインターゲット
+- 脳汁を出したい20代~30代男性
 
-* System dependencies
+## ●ユーザーが抱える問題
+- 脳汁を出したいが、お金がなく、パチンコやスロットに行けない。
+- ボインボインという言葉を気兼ねなく使いたい。
 
-* Configuration
+## ●解決方法
+- 低確率当選を用意し、当選することができればご褒美に**虹色文字**、**脳汁演出**をご用意。
+- ボインボインルーレットは **「母音」** と **「母音」** が連なることから名付けられていることを大前提にする。
 
-* Database creation
+## ●機能予定
+- ユーザー一覧機能作成
+- ランキング機能作成
+- 現在性質上、ユーザーが増えてしまうとデータベースの圧迫が激しくなる為、月一のデータの削除、もしくは集めた言葉を廃棄して数値だけの登録にする
 
-* Database initialization
+## ●使用技術
+### バックエンド
+- Ruby 3.0.0
+- Rails 6.0.5
 
-* How to run the test suite
+### フロントエンド
+- Vue 2.6.14
+- Bootstrap
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### インフラ
+- Heroku
