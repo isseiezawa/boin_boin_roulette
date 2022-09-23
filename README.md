@@ -1,6 +1,6 @@
 # ボインボインルーレット
 
-![image](https://gyazo.com/de91928a8590018034ea04807d9d254f)
+![image](https://gyazo.com/de91928a8590018034ea04807d9d254f.gif)
 
 ## ●サービス概要
 - 母音を連ねてボインボインを目指そう!
